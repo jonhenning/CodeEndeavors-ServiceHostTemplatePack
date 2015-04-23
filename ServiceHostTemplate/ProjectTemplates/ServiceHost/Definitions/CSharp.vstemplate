@@ -1,0 +1,31 @@
+<VSTemplate Version="2.0.0" Type="ProjectGroup"
+    xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+
+  <!-- Fore more info on multi project templates visit: http://msdn.microsoft.com/en-us/library/ms185308(v=vs.90).aspx -->
+
+  <TemplateData>
+    <Name>Code Endeavors ServiceHost project</Name>
+    <Description>Creates Code Endeavors Service host project files</Description>
+    <ProjectType>CSharp</ProjectType>
+    <DefaultName>MyCompany.Services.MyServices</DefaultName>
+    <SortOrder>5000</SortOrder>
+  </TemplateData>
+  <TemplateContent>
+    <ProjectCollection>
+      <ProjectTemplateLink ProjectName="$safeprojectname$.Shared">SampleServices.Shared\MyTemplate.vstemplate</ProjectTemplateLink>
+      <ProjectTemplateLink ProjectName="$safeprojectname$">SampleServices\MyTemplate.vstemplate</ProjectTemplateLink>
+      <ProjectTemplateLink ProjectName="$safeprojectname$.Client">SampleServices.Client\MyTemplate.vstemplate</ProjectTemplateLink>
+      <ProjectTemplateLink ProjectName="$safeprojectname$.Test">SampleServices.Test\MyTemplate.vstemplate</ProjectTemplateLink>
+    </ProjectCollection>
+    <ProjectItem ReplaceParameters="false" TargetFileName="lib\internalizeexclude.regex">lib\internalizeexclude.regex</ProjectItem>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>CodeEndeavors.ServiceHostTemplateWizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
+    <FullClassName>CodeEndeavors.ServiceHostTemplateWizards.ServiceHostWidgetWizard</FullClassName>
+  </WizardExtension>
+
+  <!--<WizardExtension>
+    <Assembly>TemplateBuilder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
+    <FullClassName>TemplateBuilder.RootWizard</FullClassName>
+  </WizardExtension>-->
+</VSTemplate>

@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>12.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{35C39980-671D-4E9C-B15B-70AEB832018E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CodeEndeavors.ServiceHostTemplate</RootNamespace>
+    <AssemblyName>CodeEndeavors.ServiceHostTemplate</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <GeneratePkgDefFile>false</GeneratePkgDefFile>
+    <IncludeAssemblyInVSIXContainer>false</IncludeAssemblyInVSIXContainer>
+    <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
+    <IncludeDebugSymbolsInLocalVSIXDeployment>false</IncludeDebugSymbolsInLocalVSIXDeployment>
+    <CopyBuildOutputToOutputDirectory>false</CopyBuildOutputToOutputDirectory>
+    <CopyOutputSymbolsToOutputDirectory>false</CopyOutputSymbolsToOutputDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>redist\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\redist\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Label="TemplateBuilder">
+    <TemplateBuilderTargets Condition=" '$(TemplateBuilderTargets)'=='' ">$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\.\packages\TemplateBuilder.1.1.2-beta5\tools\ligershark.templates.targets ))</TemplateBuilderTargets>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ProjectTemplates\ServiceHost\SampleServices.Client\Http\Sales.cs" />
+    <Compile Include="ProjectTemplates\ServiceHost\SampleServices.Client\Properties\AssemblyInfo.cs" />
+    <Compile Include="ProjectTemplates\ServiceHost\SampleServices.Client\Sales.cs" />
+    <Compile Include="ProjectTemplates\ServiceHost\SampleServices.Client\ServiceInterfaces.cs" />
+    <Compile Include="ProjectTemplates\ServiceHost\SampleServices.Client\Stubs\Sales.cs" />
+    <Compile Include="ProjectTemplates\ServiceHost\SampleServices.Shared\DomainObjects\Customer.cs" />
+    <Compile Include="ProjectTemplates\ServiceHost\SampleServices.Shared\Properties\AssemblyInfo.cs" />
+    <Compile Include="ProjectTemplates\ServiceHost\SampleServices.Shared\TransportObjects\CustomerFilter.cs" />
+    <Compile Include="ProjectTemplates\ServiceHost\SampleServices.Test\Program.cs" />
+    <Compile Include="ProjectTemplates\ServiceHost\SampleServices.Test\Properties\AssemblyInfo.cs" />
+    <Compile Include="ProjectTemplates\ServiceHost\SampleServices\Controllers\SalesController.cs" />
+    <Compile Include="ProjectTemplates\ServiceHost\SampleServices\Properties\AssemblyInfo.cs" />
+    <Compile Include="ProjectTemplates\ServiceHost\SampleServices\Sales.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="key.snk" />
+    <None Include="packages.config" />
+    <None Include="ProjectTemplates\ServiceHost\SampleServices.Client\build.targets">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ProjectTemplates\ServiceHost\SampleServices.Client\packages.config" />
+    <None Include="ProjectTemplates\ServiceHost\SampleServices.Test\App.config" />
+    <None Include="ProjectTemplates\ServiceHost\SampleServices.Test\log4net.config" />
+    <None Include="ProjectTemplates\ServiceHost\SampleServices.Test\packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ProjectTemplates\ServiceHost\SampleServices\App.config" />
+    <None Include="ProjectTemplates\ServiceHost\SampleServices\build.targets">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ProjectTemplates\ServiceHost\SampleServices\Service.log4net.config" />
+    <None Include="ProjectTemplates\ServiceHost\SampleServices\packages.config" />
+    <Content Include="ProjectTemplates\ServiceHost\SampleServices.Client\_preprocess.xml" />
+    <Content Include="ProjectTemplates\ServiceHost\SampleServices.Shared\_preprocess.xml" />
+    <Content Include="ProjectTemplates\ServiceHost\SampleServices.Test\_preprocess.xml" />
+    <Content Include="ProjectTemplates\ServiceHost\SampleServices\_preprocess.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\Definitions\CSharp.vstemplate">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\lib\internalizeexclude.regex">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\lib\MSBuildTargets\MSBuild.Community.Tasks.Targets">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Views\Web.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Web.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <None Include="Properties\template-builder.props" />
+    <None Include="source.extension.vsixmanifest">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="TemplateBuilder">
+      <HintPath>packages\TemplateBuilder.1.1.2-beta5\lib\TemplateBuilder.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ProjectTemplates\ServiceHost\SampleServices\Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ProjectTemplates\ServiceHost\SampleServices.Client\CodeEndeavors.Services.SampleServices.Client.csproj" />
+    <Content Include="ProjectTemplates\ServiceHost\SampleServices.Client\MyTemplate.vstemplate" />
+    <Content Include="ProjectTemplates\ServiceHost\SampleServices.Shared\CodeEndeavors.Services.SampleServices.Shared.csproj" />
+    <Content Include="ProjectTemplates\ServiceHost\SampleServices.Shared\MyTemplate.vstemplate">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\SampleServices.Test\CodeEndeavors.Services.SampleServices.Test.csproj">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\SampleServices.Test\MyTemplate.vstemplate">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\SampleServices\CodeEndeavors.Services.SampleServices.csproj">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\SampleServices\MyTemplate.vstemplate" />
+    <Content Include="ProjectTemplates\ServiceHost\lib\ILMerge.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\lib\MSBuildTargets\ICSharpCode.SharpZipLib.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\lib\MSBuildTargets\MSBuild.Community.Tasks.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\log4net.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\Newtonsoft.Json.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\System.Web.Helpers.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\System.Web.Mvc.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\System.Web.Razor.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\System.Web.WebPages.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\System.Web.WebPages.Razor.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\_preprocess.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Resources\CodeEndeavors.ico" />
+    <Content Include="Resources\Package.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodeEndeavors.ServiceHostTemplateWizards\CodeEndeavors.ServiceHostTemplateWizards.csproj">
+      <Project>{cb4485df-f80b-47c0-8455-bf2654bc3aad}</Project>
+      <Name>CodeEndeavors.ServiceHostTemplateWizards</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(TemplateBuilderTargets)" Condition="Exists('$(TemplateBuilderTargets)')" Label="TemplateBuilder" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

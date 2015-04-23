@@ -1,0 +1,38 @@
+﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>Code Endeavors Service Client Proxy</Name>
+    <Description>Client Proxy</Description>
+    <DefaultName>$saferootprojectname$.Client</DefaultName>
+
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType></ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+
+    <!-- Indicates how many parent folders this item template should appear in -->
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="$saferootprojectname$.Client.csproj" File="CodeEndeavors.Services.SampleServices.Client.csproj" ReplaceParameters="true">
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Http" TargetFolderName="Http">
+        <ProjectItem ReplaceParameters="true" TargetFileName="Sales.cs">Sales.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Stubs" TargetFolderName="Stubs">
+        <ProjectItem ReplaceParameters="true" TargetFileName="Sales.cs">Sales.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="build.targets">build.targets</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Sales.cs">Sales.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ServiceInterfaces.cs">ServiceInterfaces.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>TemplateBuilder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
+    <FullClassName>TemplateBuilder.ChildWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

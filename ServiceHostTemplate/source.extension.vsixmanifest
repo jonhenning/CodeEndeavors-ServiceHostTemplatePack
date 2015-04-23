@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="CodeEndeavors.ServiceHostTemplatePack..a3158e73-d833-491c-83c3-b0ddda14f7ac" Version="1.0" Language="en-US" Publisher="Code Endeavors, Inc." />
+    <DisplayName>Code Endeavors ServiceHost Template </DisplayName>
+    <Description xml:space="preserve">Code Endeavors ServiceHost project</Description>
+    <MoreInfo>http://www.codeendeavors.com</MoreInfo>
+    <Icon>Resources\CodeEndeavors.ico</Icon>
+    <PreviewImage>Resources\CodeEndeavors.ico</PreviewImage>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Version="[12.0,13.0]" Id="Microsoft.VisualStudio.Pro" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.ItemTemplate" Path="Output\ItemTemplates" />
+    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" Path="Output\ProjectTemplates" />
+    <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="File" Path="TemplateBuilder.dll" AssemblyName="TemplateBuilder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="File" Path="CodeEndeavors.ServiceHostTemplateWizards.dll" AssemblyName="CodeEndeavors.ServiceHostTemplateWizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+  </Assets>
+</PackageManifest>

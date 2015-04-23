@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TemplateReport>
+  <ItemTemplates />
+  <ProjectTemplates>
+    <ProjectTemplate Path="ProjectTemplates\ServiceHost\Definitions\CSharp.vstemplate" Name="Code Endeavors ServiceHost project" Description="Creates Code Endeavors Service host project files" ProjectType="CSharp" ProjectSubType="" />
+  </ProjectTemplates>
+  <Snippets />
+</TemplateReport>
