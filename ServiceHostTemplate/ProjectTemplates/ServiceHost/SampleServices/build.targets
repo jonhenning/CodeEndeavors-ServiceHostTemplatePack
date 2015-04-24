@@ -47,9 +47,9 @@
     </Target>
 
     <Target Name="DeployPackage" Condition="$(Deploy) == '1'">
-      <Copy SourceFiles="$(TargetDir)\CodeEndeavors.Extensions.dll" DestinationFolder="$(ServiceHostBin)" Condition="!Exists('$(ServiceHostBin)\CodeEndeavors.Extensions.dll')" />
-      <Copy SourceFiles="$(TargetDir)\CodeEndeavors.ServiceHost.dll" DestinationFolder="$(ServiceHostBin)" Condition="!Exists('$(ServiceHostBin)\CodeEndeavors.ServiceHost.dll')" />
-      <Copy SourceFiles="$(TargetDir)\CodeEndeavors.ServiceHost.Common.dll" DestinationFolder="$(ServiceHostBin)" Condition="!Exists('$(ServiceHostBin)\CodeEndeavors.ServiceHost.Common.dll')" />
+      <Copy SourceFiles="$(TargetDir)CodeEndeavors.Extensions.dll" DestinationFolder="$(ServiceHostBin)" Condition="!Exists('$(ServiceHostBin)\CodeEndeavors.Extensions.dll')" />
+      <Copy SourceFiles="$(TargetDir)CodeEndeavors.ServiceHost.dll" DestinationFolder="$(ServiceHostBin)" Condition="!Exists('$(ServiceHostBin)\CodeEndeavors.ServiceHost.dll')" />
+      <Copy SourceFiles="$(TargetDir)CodeEndeavors.ServiceHost.Common.dll" DestinationFolder="$(ServiceHostBin)" Condition="!Exists('$(ServiceHostBin)\CodeEndeavors.ServiceHost.Common.dll')" />
 
       <Copy SourceFiles="$(RedistDir)\$(ProjectFullName).zip" DestinationFolder="$(ServiceHostBin)" SkipUnchangedFiles="false" />
         <Unzip TargetDirectory="$(ServiceHostBin)" ZipFileName="$(ServiceHostBin)\$(ProjectFullName).zip" />
