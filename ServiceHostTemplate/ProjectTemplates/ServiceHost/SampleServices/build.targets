@@ -43,7 +43,7 @@
     <Target Name="CreateSetupPackage" DependsOnTargets="CleanRedistDir" >
         <Zip Files="$(ServiceDir)\$(ProjectFullName).dll;$(ServiceDir)\$(ProjectFullName).pdb;$(TargetDir)\$(ProjectFullName).dll.config;$(TargetDir)\$(ProjectFullName).log4net.config;@(DllDependencies);" WorkingDirectory="$(TargetDir)\" Flatten="true" ZipFileName="$(RedistDir)\$(ProjectFullName).zip" />
         <Unzip TargetDirectory="$(RedistDir)" ZipFileName="$(RedistDir)\$(ProjectFullName).zip" />
-        <RemoveDir Directories="$(ClientDir)" />
+        <RemoveDir Directories="$(ServiceDir)" />
     </Target>
 
     <Target Name="DeployPackage" Condition="$(Deploy) == '1'">
