@@ -12,7 +12,7 @@
         <RedistDir>$(RootDir)\redist</RedistDir>
         <CommonLibDir>$(RootDir)\lib</CommonLibDir>
         <ServiceDir>$(RootDir)\service</ServiceDir>
-        <ServiceHostBin>$(RootDir)\..\..\..\ServiceHost\bin</ServiceHostBin>
+        <ServiceHostBin>$(RootDir)\..\..\ServiceHost\bin</ServiceHostBin>
         <ProgramFiles32 Condition="Exists('$(PROGRAMFILES) (x86)')">$(PROGRAMFILES) (x86)</ProgramFiles32>
         <ProgramFiles32 Condition="$(ProgramFiles32) == ''">$(PROGRAMFILES)</ProgramFiles32>
         <ILMergeTargetPlatform>/targetplatform:v4,"$(PROGRAMFILES)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client"</ILMergeTargetPlatform>
@@ -47,9 +47,9 @@
     </Target>
 
     <Target Name="DeployPackage" Condition="$(Deploy) == '1'">
-      <Copy SourceFiles="$(TargetDir)\CodeEndeavors.Extensions.dll" DestinationFolder="$(ServiceHostBin)" Condition="!Exists('$(ServiceHostBin)\CodeEndeavors.Extensions.dll')" />
-      <Copy SourceFiles="$(TargetDir)\CodeEndeavors.ServiceHost.dll" DestinationFolder="$(ServiceHostBin)" Condition="!Exists('$(ServiceHostBin)\CodeEndeavors.ServiceHost.dll')" />
-      <Copy SourceFiles="$(TargetDir)\CodeEndeavors.ServiceHost.Common.dll" DestinationFolder="$(ServiceHostBin)" Condition="!Exists('$(ServiceHostBin)\CodeEndeavors.ServiceHost.Common.dll')" />
+      <Copy SourceFiles="$(TargetDir)CodeEndeavors.Extensions.dll" DestinationFolder="$(ServiceHostBin)" Condition="!Exists('$(ServiceHostBin)\CodeEndeavors.Extensions.dll')" />
+      <Copy SourceFiles="$(TargetDir)CodeEndeavors.ServiceHost.dll" DestinationFolder="$(ServiceHostBin)" Condition="!Exists('$(ServiceHostBin)\CodeEndeavors.ServiceHost.dll')" />
+      <Copy SourceFiles="$(TargetDir)CodeEndeavors.ServiceHost.Common.dll" DestinationFolder="$(ServiceHostBin)" Condition="!Exists('$(ServiceHostBin)\CodeEndeavors.ServiceHost.Common.dll')" />
 
       <Copy SourceFiles="$(RedistDir)\$(ProjectFullName).zip" DestinationFolder="$(ServiceHostBin)" SkipUnchangedFiles="false" />
         <Unzip TargetDirectory="$(ServiceHostBin)" ZipFileName="$(ServiceHostBin)\$(ProjectFullName).zip" />
