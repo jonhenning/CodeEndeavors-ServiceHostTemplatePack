@@ -43,7 +43,11 @@
     </Target>
 
     <Target Name="CreateSetupPackage" DependsOnTargets="CleanRedistDir" >
-        <Zip Files="$(ClientDir)\$(ExternalClientName).dll" WorkingDirectory="$(ClientDir)\" ZipFileName="$(RedistDir)\$(ExternalClientName).zip" />
+      <CreateItem Include="$(ClientDir)\$(ExternalClientName).dll;$(ClientDir)\$(ExternalClientName).pdb;">
+        <Output TaskParameter="Include" ItemName="ZipFiles" />
+      </CreateItem>
+
+      <Zip Files="@(ZipFiles)" WorkingDirectory="$(ClientDir)\" ZipFileName="$(RedistDir)\$(ExternalClientName).zip" />
         <Unzip TargetDirectory="$(RedistDir)" ZipFileName="$(RedistDir)\$(ExternalClientName).zip" />
         <RemoveDir Directories="$(ClientDir)" />
     </Target>

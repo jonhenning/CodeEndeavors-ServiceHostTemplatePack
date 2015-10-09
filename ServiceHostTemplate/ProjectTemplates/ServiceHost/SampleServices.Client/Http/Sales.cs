@@ -19,7 +19,7 @@ namespace $saferootprojectname$.Client.Http
 
         public ServiceResult<DomainObjects.Customer> GetCustomer(int id)
         {
-            return base.GetHttpRequestObject<ServiceResult<DomainObjects.Customer>>(base.RequestUrl("GetCustomer", id.ToString()), false, true);
+            return base.GetHttpRequestObject<ServiceResult<DomainObjects.Customer>>(base.RequestUrl("GetCustomer", id.ToString()), false, false);
         }
 
     }

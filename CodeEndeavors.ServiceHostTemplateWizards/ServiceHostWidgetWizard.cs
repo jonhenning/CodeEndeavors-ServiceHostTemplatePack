@@ -45,7 +45,7 @@ namespace CodeEndeavors.ServiceHostTemplateWizards
         private void CopyFiles(string destPath)
         {
             var libDir = Path.Combine(destPath, "lib");
-            var serviceHostDir = Path.Combine(destPath, @"..\..\..\ServiceHost");
+            var serviceHostDir = Path.Combine(destPath, @"..\ServiceHost");
             var sourceLibDir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ProjectTemplates\ServiceHost\lib");
             var sourceServiceHostDir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ProjectTemplates\ServiceHost\ServiceHost");
 
