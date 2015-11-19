@@ -1,10 +1,11 @@
-﻿using CodeEndeavors.ServiceHost.Common.Services;
+﻿using System;
+using CodeEndeavors.ServiceHost.Common.Services;
 
 namespace $saferootprojectname$.Client.Stubs
 {
     public class Sales : ISalesService
     {
-        public ServiceResult<Shared.DomainObjects.Customer> GetCustomer(int id)
+        public ServiceResult<Shared.DomainObjects.Customer> CustomerGet(int id)
         {
             var customer = new Shared.DomainObjects.Customer()
             {
@@ -17,8 +18,12 @@ namespace $saferootprojectname$.Client.Stubs
             return ret;
         }
 
+        public ServiceResult<bool> CustomerSave(Shared.DomainObjects.Customer customer, int id)
+        {
+            throw new System.NotImplementedException();
+        }
 
-        public void SetAquireUserIdDelegate(BaseClientHttpService.AquireUserId func)
+        public void SetAquireUserIdDelegate(Func<string> func)
         {
             
         }

@@ -25,16 +25,24 @@ namespace $saferootprojectname$.Client
             _service = new Http.Sales(httpServiceUrl, requestTimeout, restfulServerExtension);
         }
 
-        public void SetAquireUserIdDelegate(BaseClientHttpService.AquireUserId func)
+        public void SetAquireUserIdDelegate(Func<string> func)
         {
             _service.SetAquireUserIdDelegate(func);
         }
 
-        public ClientCommandResult<DomainObjects.Customer> GetCustomer(int id)
+        public ClientCommandResult<DomainObjects.Customer> CustomerGet(int id)
         {
             return Helpers.ExecuteClientResult<DomainObjects.Customer>(result =>
             {
-                result.ReportResult(_service.GetCustomer(id), true);
+                result.ReportResult(_service.CustomerGet(id), true);
+            });
+        }
+
+        public ClientCommandResult<bool> CustomerSave(DomainObjects.Customer customer, int id)
+        {
+            return Helpers.ExecuteClientResult<bool>(result =>
+            {
+                result.ReportResult(_service.CustomerSave(customer, id), true);
             });
         }
 

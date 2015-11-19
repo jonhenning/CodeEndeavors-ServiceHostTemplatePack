@@ -12,14 +12,19 @@ namespace $saferootprojectname$.Client.Http
         {
         }
 
-        public void SetAquireUserIdDelegate(CodeEndeavors.ServiceHost.Common.Services.BaseClientHttpService.AquireUserId func)
+        public void SetAquireUserIdDelegate(Func<string> func)
         {
             base.AquireUserIdDelegate = func;
         }
 
-        public ServiceResult<DomainObjects.Customer> GetCustomer(int id)
+        public ServiceResult<DomainObjects.Customer> CustomerGet(int id)
         {
-            return base.GetHttpRequestObject<ServiceResult<DomainObjects.Customer>>(base.RequestUrl("GetCustomer", id.ToString()), false, false);
+            return base.GetHttpRequestObject<ServiceResult<DomainObjects.Customer>>(base.RequestUrl("CustomerGet", id.ToString()), false, false);
+        }
+
+        public ServiceResult<bool> CustomerSave(DomainObjects.Customer customer, int id)
+        {
+            return base.GetHttpRequestObject<ServiceResult<bool>>(base.RequestUrl("CustomerSave"), customer, false, false);
         }
 
     }

@@ -36,16 +36,17 @@
       <HintPath>..\..\packages\CodeEndeavors.Extensions.1.0.12\lib\4.0\CodeEndeavors.Extensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CodeEndeavors.ServiceHost, Version=1.0.13.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CodeEndeavors.ServiceHost.1.0.13\lib\4.5\CodeEndeavors.ServiceHost.dll</HintPath>
+    <Reference Include="CodeEndeavors.ServiceHost, Version=1.0.24.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CodeEndeavors.ServiceHost.1.0.24\lib\4.5\CodeEndeavors.ServiceHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CodeEndeavors.ServiceHost.Common, Version=1.0.13.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CodeEndeavors.ServiceHost.Common.1.0.13\lib\4.5\CodeEndeavors.ServiceHost.Common.dll</HintPath>
+    <Reference Include="CodeEndeavors.ServiceHost.Common, Version=1.0.24.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CodeEndeavors.ServiceHost.Common.1.0.24\lib\4.5\CodeEndeavors.ServiceHost.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

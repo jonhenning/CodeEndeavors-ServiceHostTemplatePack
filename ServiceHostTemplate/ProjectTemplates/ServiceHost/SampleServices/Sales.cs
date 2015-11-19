@@ -17,7 +17,7 @@ namespace $saferootprojectname$
             //_myConnection = GetConnectionString("MyConnectionString", "");
         }
 
-        public ServiceResult<DomainObjects.Customer> GetCustomer(int id, string userId)
+        public ServiceResult<DomainObjects.Customer> CustomerGet(int id, string userId)
         {
             return this.ExecuteServiceResult<DomainObjects.Customer>(result =>
             {
@@ -29,6 +29,15 @@ namespace $saferootprojectname$
                     LastName = "Service Last Name"
                 };
                 result.ReportResult(customer, true);
+            });
+        }
+
+        public ServiceResult<bool> CustomerSave(DomainObjects.Customer customer, string userId)
+        {
+            return this.ExecuteServiceResult<bool>(result =>
+            {
+                //todo: database code here!
+                result.ReportResult(true, true);
             });
         }
 

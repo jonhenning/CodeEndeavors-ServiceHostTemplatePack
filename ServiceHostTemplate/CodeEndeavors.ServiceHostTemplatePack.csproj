@@ -90,6 +90,10 @@
   <ItemGroup>
     <None Include="key.snk" />
     <None Include="packages.config" />
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\web.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="ProjectTemplates\ServiceHost\SampleServices.Client\build.targets">
       <SubType>Designer</SubType>
     </None>
@@ -105,6 +109,66 @@
     </None>
     <None Include="ProjectTemplates\ServiceHost\SampleServices\Service.log4net.config" />
     <None Include="ProjectTemplates\ServiceHost\SampleServices\packages.config" />
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\CodeEndeavors.Extensions.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\CodeEndeavors.ServiceHost.Common.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\CodeEndeavors.ServiceHost.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\Microsoft.Owin.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\Microsoft.Owin.Host.SystemWeb.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\Microsoft.Owin.Security.Cookies.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\Microsoft.Owin.Security.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\Microsoft.Owin.Security.OAuth.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\Newtonsoft.Json.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\Owin.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\Swashbuckle.Core.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\System.Net.Http.Formatting.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\System.Web.Http.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\System.Web.Http.Owin.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\System.Web.Http.WebHost.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="ProjectTemplates\ServiceHost\SampleServices.Client\_preprocess.xml" />
     <Content Include="ProjectTemplates\ServiceHost\SampleServices.Shared\_preprocess.xml" />
     <Content Include="ProjectTemplates\ServiceHost\SampleServices.Test\_preprocess.xml" />
@@ -119,114 +183,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="ProjectTemplates\ServiceHost\lib\MSBuildTargets\MSBuild.Community.Tasks.Targets">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\HelpPage.css">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\System.Net.Http.Formatting.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\System.Web.Http.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\System.Web.Http.WebHost.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\System.Web.WebPages.Deployment.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Views\Web.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Web.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\Views\Help\Api.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\Views\Help\Index.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\Views\Help\ResourceModel.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\Views\Shared\_Layout.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\Views\Web.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\Areas\HelpPage\Views\_ViewStart.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -281,30 +237,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="ProjectTemplates\ServiceHost\lib\MSBuildTargets\MSBuild.Community.Tasks.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\Newtonsoft.Json.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\System.Web.Helpers.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\System.Web.Mvc.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\System.Web.Razor.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\System.Web.WebPages.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\System.Web.WebPages.Razor.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

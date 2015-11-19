@@ -30,7 +30,7 @@ namespace $saferootprojectname$.Test
         {
             AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 
-            string url = "http://localhost/ServiceHost/";
+            string url = "$servicehosturl$";
             Console.Write("Url (ENTER={0}):", url);
             string endpoint = Console.ReadLine();
             if (String.IsNullOrEmpty(endpoint) == false)
@@ -82,10 +82,10 @@ namespace $saferootprojectname$.Test
             if (commandParts.Length > 1)
                 id = int.Parse(commandParts[1]);
 
-            RecordMessage(String.Format("Performing GetCustomer({0})", id));
+            RecordMessage(String.Format("Performing CustomerGet({0})", id));
 
-            var cr = SalesService.GetCustomer(id);
-            Console.WriteLine(cr.Data.ToJson());
+            var cr = SalesService.CustomerGet(id);
+            Console.WriteLine(cr.Data.ToJson(true));
             return cr;
         }
 

@@ -10,7 +10,8 @@ namespace $saferootprojectname$.Client
 {
     public interface ISalesService
     {
-        ServiceResult<DomainObjects.Customer> GetCustomer(int id);
-        void SetAquireUserIdDelegate(BaseClientHttpService.AquireUserId func);
+        ServiceResult<DomainObjects.Customer> CustomerGet(int id);
+        ServiceResult<bool> CustomerSave(DomainObjects.Customer customer, int id);
+        void SetAquireUserIdDelegate(Func<string> func);
     }
 }

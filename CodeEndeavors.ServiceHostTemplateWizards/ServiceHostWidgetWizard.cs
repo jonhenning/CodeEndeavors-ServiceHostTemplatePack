@@ -27,7 +27,14 @@ namespace CodeEndeavors.ServiceHostTemplateWizards
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, Microsoft.VisualStudio.TemplateWizard.WizardRunKind runKind, object[] customParams)
         {
             _replacementsDictionary = replacementsDictionary;
+
+            if (NewServiceHostForm.ShowDialog(replacementsDictionary) == false)
+                throw new WizardCancelledException("The wizard has been cancelled by the user.");
+
             RootWizard.GlobalDictionary["$saferootprojectname$"] = replacementsDictionary["$safeprojectname$"]; //need to set this so Child projects have access
+            RootWizard.GlobalDictionary["$servicehostdir$"] = replacementsDictionary["$servicehostdir$"]; //need to set this so Child projects have access
+            RootWizard.GlobalDictionary["$servicehosturl$"] = replacementsDictionary["$servicehosturl$"]; //need to set this so Child projects have access
+
             //_replacementsDictionary.Add("$saferootprojectname$", RootWizard.GlobalDictionary["$saferootprojectname$"]);
 
         }
@@ -45,12 +52,17 @@ namespace CodeEndeavors.ServiceHostTemplateWizards
         private void CopyFiles(string destPath)
         {
             var libDir = Path.Combine(destPath, "lib");
-            var serviceHostDir = Path.Combine(destPath, @"..\ServiceHost");
+            var serviceHostDir = Path.Combine(_replacementsDictionary["$destinationdirectory$"], RootWizard.GlobalDictionary["$servicehostdir$"]); //Path.Combine(destPath, @"..\ServiceHost");
+            //MessageBox.Show(serviceHostDir);
             var sourceLibDir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ProjectTemplates\ServiceHost\lib");
             var sourceServiceHostDir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ProjectTemplates\ServiceHost\ServiceHost");
 
             copyDirectory(sourceLibDir, libDir);
-            copyDirectory(sourceServiceHostDir, serviceHostDir);
+
+            if (_replacementsDictionary.ContainsKey("CreateServiceHost") && _replacementsDictionary["CreateServiceHost"] == "true")
+            {
+                copyDirectory(sourceServiceHostDir, serviceHostDir);
+            }
         }
 
         private void SafeCopy(string from, string to, bool bypassError = false)
