@@ -1,0 +1,31 @@
+﻿<#@ include file="EF.Reverse.POCO.Core.ttinclude" #>
+
+<#
+    string[] IncludedTables = new[] {"Table1", "Table1"};
+    string[] IncludedProcs = null;// = new[] {"Proce1"};
+
+    ConnectionStringName = "$defaultnamespace$.Properties.Settings.$safeitemname$Connection";
+    ElementsToGenerate = Elements.Poco;
+    PocoNamespace = "$rootnamespace$";
+    ContextNamespace = "";
+    UnitOfWorkNamespace = "";	
+    PocoConfigurationNamespace = "";
+    DbContextName = "";
+
+#>
+
+<#@ include file="EF.Reverse.CE.POCO.ttinclude" #>
+
+
+<#
+    // Read schema
+    var factory = GetDbProviderFactory();
+    var tables = LoadTables(factory);
+    var storedProcs = LoadStoredProcs(factory);
+    
+    // Generate output
+    if (tables.Count > 0 || storedProcs.Count > 0)
+    {
+#>
+<#@ include file="EF.Reverse.POCO.ttinclude" #>
+<# } #>

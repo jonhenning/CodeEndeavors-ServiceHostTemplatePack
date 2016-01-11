@@ -1,0 +1,29 @@
+﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Item">
+  <TemplateData>
+    <ProjectType>CSharp</ProjectType>
+
+    <DefaultName>Data.tt</DefaultName>
+    <Name>Data E6 T4 Template</Name>
+    <Description>Data T4 files for Entity Framework 6</Description>
+    <Icon>icon.png</Icon>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+  </TemplateData>
+  <TemplateContent>
+    <References />
+    <ProjectItem ReplaceParameters="true" TargetFileName="$safeitemname$.tt">data.t4</ProjectItem>
+    <ProjectItem ReplaceParameters="true" TargetFileName="EF.Reverse.CE.POCO.ttinclude">EF.Reverse.CE.POCO.ttinclude</ProjectItem>
+    <ProjectItem ReplaceParameters="true" TargetFileName="EF.Reverse.POCO.Core.ttinclude">EF.Reverse.POCO.Core.ttinclude</ProjectItem>
+    <ProjectItem ReplaceParameters="true" TargetFileName="EF.Reverse.POCO.ttinclude">EF.Reverse.POCO.ttinclude</ProjectItem>
+    <Folder Name="Mapping" TargetFolderName="Mapping">
+      <ProjectItem ReplaceParameters="true" TargetFileName="$safeitemname$.tt">data.t4</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="EF.Reverse.CE.POCO.ttinclude">EF.Reverse.CE.POCO.ttinclude</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="EF.Reverse.POCO.Core.ttinclude">EF.Reverse.POCO.Core.ttinclude</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="EF.Reverse.POCO.ttinclude">EF.Reverse.POCO.ttinclude</ProjectItem>
+    </Folder>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>CodeEndeavors.ServiceHostTemplateWizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
+    <FullClassName>CodeEndeavors.ServiceHostTemplateWizards.ServiceHostItemWizard</FullClassName>
+  </WizardExtension>
+
+</VSTemplate>
