@@ -36,7 +36,7 @@ namespace CodeEndeavors.ServiceHostTemplateWizards
         private bool validForm()
         {
             var err = "";
-            var serviceHostDir = Path.Combine(_replacementsDictionary["$destinationdirectory$"] + "\\projectdirectory", txtServiceHostDir.Text);
+            var serviceHostDir = Path.Combine(_replacementsDictionary["$destinationdirectory$"], txtServiceHostDir.Text);
 
             //if (Directory.Exists(serviceHostDir))
             //{
@@ -82,7 +82,7 @@ namespace CodeEndeavors.ServiceHostTemplateWizards
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
-                txtServiceHostDir.Text = makeRelative(folderBrowserDialog1.SelectedPath, _replacementsDictionary["$destinationdirectory$"] + "\\projectdirectory"); //destination is the root where sln is stored, we need one level deeper
+                txtServiceHostDir.Text = makeRelative(folderBrowserDialog1.SelectedPath, _replacementsDictionary["$destinationdirectory$"]); 
             }
         }
 
