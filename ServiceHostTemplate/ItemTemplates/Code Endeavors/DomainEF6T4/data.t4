@@ -2,9 +2,9 @@
 
 <#
     string[] IncludedTables = new[] {"Table1", "Table1"};
-    string[] IncludedProcs = null;// = new[] {"Proce1"};
+    string[] IncludedProcs = null;// = new[] {"Proc1"};
 
-    ConnectionStringName = "$defaultnamespace$.Properties.Settings.$safeitemname$Connection";
+    ConnectionStringName = "$solutionname$.Properties.Settings.$safeitemname$Connection";
     ElementsToGenerate = Elements.Poco;
     PocoNamespace = "$rootnamespace$";
     ContextNamespace = "";

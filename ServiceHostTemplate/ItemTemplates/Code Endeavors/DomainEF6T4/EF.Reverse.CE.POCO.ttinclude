@@ -97,15 +97,18 @@
     //              ColumnFilterExclude = new Regex("^FK_.*$");
     TableFilterExclude = null;
 
-    TableFilterInclude = new Regex(String.Join("|", IncludedTables.Select(t => "^" + t + "$").ToArray())); //new Regex("^trucking_order$|^trucking_order_item$|^company$");
-    TableSchemaInclude = String.Join(",", IncludedTables.Select(t => "'" + t + "'").ToArray());//"'trucking_order','trucking_order_item','company'";
+    TableFilterInclude = new Regex(String.Join("|", IncludedTables.Select(t => "^" + t + "$").ToArray())); 
+    TableSchemaInclude = String.Join(",", IncludedTables.Select(t => "'" + t + "'").ToArray());
     ColumnFilterExclude = null;
 
     // Stored Procedures ******************************************************************************************************************
     // Use the following regex filters to include or exclude stored procedures
     StoredProcedureFilterExclude = null;
-    if (IncludedProcs != null)
-        StoredProcedureFilterInclude = new Regex(String.Join("|", IncludedProcs.Select(t => "^" + t + "$").ToArray())); //new Regex("^trucking_order_selectByTruckingOrderId.*|^trucking_order_update$");
+    if (IncludedProcs == null)
+		IncludedProcs = new[] {"__NothingToInclude"};
+
+	ProcSchemaInclude = String.Join(",", IncludedProcs.Select(t => "'" + t + "'").ToArray());
+    StoredProcedureFilterInclude = new Regex(String.Join("|", IncludedProcs.Select(t => "^" + t + "$").ToArray())); 
 
 
     // Table renaming *********************************************************************************************************************

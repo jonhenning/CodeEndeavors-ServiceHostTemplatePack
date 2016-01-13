@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using Microsoft.VisualStudio.TemplateWizard;
 using System.Linq;
+using EnvDTE100;
 
 namespace CodeEndeavors.ServiceHostTemplateWizards
 {
@@ -31,12 +32,16 @@ namespace CodeEndeavors.ServiceHostTemplateWizards
             try
             {
                 _DTE dte = automationObject as _DTE;
+                Solution4 solution = (Solution4)dte.Solution;
                 Project project = (Project)((object[])dte.ActiveSolutionProjects)[0];
                 foreach (Property prop in project.Properties)
                 {
                     if (_projectPropertiesToAdd.Contains(prop.Name.ToLower()))
                         replacementsDictionary.Add("$" + prop.Name.ToLower() + "$", (prop.Value == null ? string.Empty : prop.Value.ToString()));
                 }
+
+                replacementsDictionary["$solutionname$"] = solution.Properties.Item("Name").Value.ToString();
+
             }
             catch (Exception ex)
             {

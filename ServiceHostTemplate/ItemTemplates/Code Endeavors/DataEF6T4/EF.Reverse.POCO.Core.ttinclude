@@ -56,6 +56,7 @@
         Regex TableFilterExclude = null;
         Regex TableFilterInclude = null;
 		string TableSchemaInclude = null;
+		string ProcSchemaInclude = null;
         Regex StoredProcedureFilterExclude = null;
         Regex StoredProcedureFilterInclude = null;
         Regex ColumnFilterExclude = null;
@@ -573,7 +574,7 @@
                        return new List<StoredProcedure>();
 
                     var reader = new SqlServerSchemaReader(conn, factory, IncludeQueryTraceOn9481Flag) { Outer = this };
-                    var storedProcs = reader.ReadStoredProcs(StoredProcedureFilterExclude, UseCamelCase, PrependSchemaName, StoredProcedureRename, SchemaName);
+                    var storedProcs = reader.ReadStoredProcs(StoredProcedureFilterExclude, UseCamelCase, PrependSchemaName, StoredProcedureRename, SchemaName, ProcSchemaInclude);
 
                     // Remove unrequired stored procs
                     for(int i = storedProcs.Count - 1; i >= 0; i--)
@@ -1126,7 +1127,7 @@
 
             public GeneratedTextTransformation Outer;
             public abstract Tables ReadSchema(Regex tableFilterExclude, Regex columnFilterExclude, bool useCamelCase, bool prependSchemaName, bool includeComments, ExtendedPropertyCommentsStyle includeExtendedPropertyComments, Func<string, string, string> tableRename, string schemaNameFilter, Func<Column, Table, Column> updateColumn, string tableSchemaInclude);
-            public abstract List<StoredProcedure> ReadStoredProcs(Regex storedProcedureFilterExclude, bool useCamelCase, bool prependSchemaName , Func<string, string, string> StoredProcedureRename, string schemaNameFilter);
+            public abstract List<StoredProcedure> ReadStoredProcs(Regex storedProcedureFilterExclude, bool useCamelCase, bool prependSchemaName , Func<string, string, string> StoredProcedureRename, string schemaNameFilter, string procSchemaInclude);
             public abstract List<ForeignKey> ReadForeignKeys(Func<string, string, string> tableRename);
             public abstract void ProcessForeignKeys(List<ForeignKey> fkList, Tables tables, bool useCamelCase, bool prependSchemaName, string collectionType, bool checkForFkNameClashes, bool includeComments);
             public abstract void IdentifyForeignKeys(List<ForeignKey> fkList, Tables tables);
@@ -1665,13 +1666,15 @@ OPTION (QUERYTRACEON 9481)";
                 }
             }
             
-            public override List<StoredProcedure> ReadStoredProcs(Regex spFilterExclude, bool useCamelCase, bool prependSchemaName , Func<string, string, string> StoredProcedureRename, string schemaNameFilter)
+            public override List<StoredProcedure> ReadStoredProcs(Regex spFilterExclude, bool useCamelCase, bool prependSchemaName , Func<string, string, string> StoredProcedureRename, string schemaNameFilter, string procSchemaInclude)
             {
                 var result = new List<StoredProcedure>();
                 if(Cmd == null)
                     return result;
-            
-                Cmd.CommandText = StoredProcedureSQL + IncludeQueryTraceOn9481();
+
+				//replace out the following string R.ROUTINE_TYPE = 'PROCEDURE' with additional filter - JH - hack
+				var sql = StoredProcedureSQL.Replace("R.ROUTINE_TYPE = 'PROCEDURE'", (!string.IsNullOrEmpty(procSchemaInclude) ? "R.ROUTINE_TYPE = 'PROCEDURE' AND R.SPECIFIC_NAME IN (" + procSchemaInclude + ")" : "R.ROUTINE_TYPE = 'PROCEDURE'"));
+                Cmd.CommandText = sql + IncludeQueryTraceOn9481();
                 if (Cmd.GetType().Name == "SqlCeCommand")
                     return result;
                 Cmd.CommandTimeout = 600;
