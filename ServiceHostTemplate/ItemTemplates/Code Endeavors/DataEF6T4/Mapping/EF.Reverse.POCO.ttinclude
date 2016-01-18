@@ -253,6 +253,22 @@ foreach(Table tbl in from t in tables.Where(t => !t.IsMapping).OrderBy(x => x.Na
         partial void InitializePartial();
         partial void OnModelCreatingPartial(DbModelBuilder modelBuilder);
 <#}#>
+
+		//custom conversion handlers
+		private SqlParameter applyDBNull(SqlParameter param)
+		{
+			if (param.Value == null)
+				param.Value = DBNull.Value;
+			return param;
+		}
+
+		private SqlParameter unapplyDBNull(SqlParameter param)
+		{
+			if (param.Value == DBNull.Value)
+				param.Value = null;
+			return param;
+		}
+
 <# if (ElementsToGenerate.HasFlag(Elements.StoredProcedures))
 { #>
         

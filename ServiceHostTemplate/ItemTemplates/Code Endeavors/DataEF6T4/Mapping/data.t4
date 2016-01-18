@@ -11,6 +11,7 @@
     UnitOfWorkNamespace = "$defaultnamespace$.Data";	
     PocoConfigurationNamespace = "$rootnamespace$";
     DbContextName = "$safeitemname$Context";
+	//ColumnNameMaps = new Dictionary<string, string>() {{"OriginalName", "NewName"}};
 
 #>
 

@@ -63,6 +63,7 @@
         string[] ConfigFilenameSearchOrder = null;
         string[] AdditionalNamespaces = null;
         string[] AdditionalContextInterfaceItems = null;
+		Dictionary<string, string> ColumnNameMaps = new Dictionary<string, string>();
         private string _connectionString = "";
         private string _providerName = "";
         private string _configFilePath = "";

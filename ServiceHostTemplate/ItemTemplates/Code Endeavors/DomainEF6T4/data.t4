@@ -11,7 +11,7 @@
     UnitOfWorkNamespace = "";	
     PocoConfigurationNamespace = "";
     DbContextName = "";
-
+	//ColumnNameMaps = new Dictionary<string, string>() {{"OriginalName", "NewName"}};
 #>
 
 <#@ include file="EF.Reverse.CE.POCO.ttinclude" #>

@@ -126,13 +126,12 @@
     // Use the following function if you need to apply additional modifications to a column
     // eg. normalise names etc.
     // Example
-    /*UpdateColumn = (Column column, Table table) => 
-    {
-        if (column.PropertyNameHumanCase == "PkId")
-            column.PropertyNameHumanCase = "Id";
-        return column;
-    };*/
-    UpdateColumn = (Column column, Table table) => column; // Do nothing by default
+    UpdateColumn = (Column column, Table table) => {
+		if (ColumnNameMaps.ContainsKey(column.PropertyName))
+			column.PropertyNameHumanCase = ColumnNameMaps[column.PropertyName];
+		return column;
+	}; // Do nothing by default
+    //UpdateColumn = (Column column, Table table) => column; // Do nothing by default
 
     // StoredProcedure renaming ************************************************************************************************************
     // Use the following function to rename stored procs such as sp_CreateOrderHistory to CreateOrderHistory, my_sp_shipments to Shipments, etc.
@@ -231,7 +230,7 @@
             //if (p.SqlDbType == "SqlDbType.VarChar")
             //    val = "string.IsNullOrEmpty(" + p.NameHumanCase + ") ? DBNull.Value : " + p.NameHumanCase;
     
-            sb.AppendLine(string.Format("            var {0}Param = Conversions.ApplyDBNull(new SqlParameter {{ ParameterName = \"{1}\", SqlDbType = SqlDbType.{2}, Direction = ParameterDirection.{3}{4}{5} }});", 
+            sb.AppendLine(string.Format("            var {0}Param = applyDBNull(new SqlParameter {{ ParameterName = \"{1}\", SqlDbType = SqlDbType.{2}, Direction = ParameterDirection.{3}{4}{5} }});", 
                 p.NameHumanCase, 
                 p.Name, 
                 p.SqlDbType, 
@@ -263,7 +262,7 @@
             if(isFake)
                 sb.AppendLine(string.Format("            {0} = default({1});", p.NameHumanCase, p.PropertyType));
             else
-                sb.AppendLine(string.Format("            {0} = ({1}) Conversions.UnapplyDBNull({2}Param).Value;", p.NameHumanCase, p.PropertyType, p.NameHumanCase));
+                sb.AppendLine(string.Format("            {0} = ({1}) unapplyDBNull({2}Param).Value;", p.NameHumanCase, p.PropertyType, p.NameHumanCase));
         }
         return sb.ToString();
     };
