@@ -24,6 +24,11 @@ namespace $saferootprojectname$.Client
             Helpers.HandleAssemblyResolve();
             _service = new Http.Sales(httpServiceUrl, requestTimeout, restfulServerExtension);
         }
+        public Sales(string httpServiceUrl, int requestTimeout, string restfulServerExtension, string httpUser, string httpPassword, AuthenticationType authenticationType)
+        {
+            Helpers.HandleAssemblyResolve();
+            _service = new Http.Sales(httpServiceUrl, requestTimeout, restfulServerExtension, httpUser, httpPassword, authenticationType);
+        }
 
         public void SetAquireUserIdDelegate(Func<string> func)
         {

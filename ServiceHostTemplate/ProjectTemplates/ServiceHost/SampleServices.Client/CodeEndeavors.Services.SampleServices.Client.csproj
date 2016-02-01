@@ -34,8 +34,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\CodeEndeavors.Extensions.1.0.12\lib\4.0\CodeEndeavors.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="CodeEndeavors.ServiceHost.Common, Version=1.0.30.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CodeEndeavors.ServiceHost.Common.1.0.30\lib\4.5\CodeEndeavors.ServiceHost.Common.dll</HintPath>
+    <Reference Include="CodeEndeavors.ServiceHost.Common, Version=1.0.32.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CodeEndeavors.ServiceHost.Common.1.0.32\lib\4.5\CodeEndeavors.ServiceHost.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">

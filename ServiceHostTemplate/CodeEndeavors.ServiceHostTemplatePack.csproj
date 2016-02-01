@@ -104,6 +104,14 @@
     <None Include="packages.config" />
     <Content Include="ItemTemplates\Code Endeavors\DomainEF6T4\Definitions\CSharp.vstemplate" />
     <Content Include="ItemTemplates\Code Endeavors\DataEF6T4\Definitions\CSharp.vstemplate" />
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\Microsoft.AspNet.WebApi.Extensions.Compression.Server.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\System.Net.Http.Extensions.Compression.Core.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="ProjectTemplates\ServiceHost\ServiceHost\web.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>

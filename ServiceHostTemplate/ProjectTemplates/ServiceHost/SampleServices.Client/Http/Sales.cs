@@ -7,8 +7,13 @@ namespace $saferootprojectname$.Client.Http
 {
     public class Sales : CodeEndeavors.ServiceHost.Common.Services.BaseClientHttpService, ISalesService
     {
-        public Sales(string HttpServiceUrl, int RequestTimeout, string RestfulServerExtension)
-            : base("Sales", HttpServiceUrl, RequestTimeout, RestfulServerExtension, Log.ConfigFileName)
+        public Sales(string httpServiceUrl, int requestTimeout, string restfulServerExtension)
+            : base("Sales", httpServiceUrl, requestTimeout, restfulServerExtension, Log.ConfigFileName)
+        {
+        }
+
+        public Sales(string httpServiceUrl, int requestTimeout, string restfulServerExtension, string httpUser, string httpPassword, AuthenticationType authenticationType)
+            : base("Sales", httpServiceUrl, requestTimeout, restfulServerExtension, Log.ConfigFileName, httpUser, httpPassword, authenticationType)
         {
         }
 
@@ -19,12 +24,12 @@ namespace $saferootprojectname$.Client.Http
 
         public ServiceResult<DomainObjects.Customer> CustomerGet(int id)
         {
-            return base.GetHttpRequestObject<ServiceResult<DomainObjects.Customer>>(base.RequestUrl("CustomerGet", id.ToString()), false, false);
+            return base.GetHttpRequestObject<ServiceResult<DomainObjects.Customer>>(base.RequestUrl("CustomerGet", id.ToString()));
         }
 
         public ServiceResult<bool> CustomerSave(DomainObjects.Customer customer, int id)
         {
-            return base.GetHttpRequestObject<ServiceResult<bool>>(base.RequestUrl("CustomerSave"), customer, false, false);
+            return base.GetHttpRequestObject<ServiceResult<bool>>(base.RequestUrl("CustomerSave"), customer);
         }
 
     }
