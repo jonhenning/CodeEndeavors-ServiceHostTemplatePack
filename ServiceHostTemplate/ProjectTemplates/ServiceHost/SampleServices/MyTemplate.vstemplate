@@ -26,7 +26,6 @@
       <Folder Name="Data" TargetFolderName="Data">
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="build.targets">build.targets</ProjectItem>
-      <ProjectItem ReplaceParameters="true" TargetFileName="$saferootprojectname$.log4net.config">Service.log4net.config</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Sales.cs">Sales.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="App.config">App.config</ProjectItem>
     </Project>

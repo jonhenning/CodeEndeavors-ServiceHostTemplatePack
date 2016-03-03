@@ -4,7 +4,7 @@
   <PropertyGroup>
     <ProjectFullName>$saferootprojectname$</ProjectFullName>
     <Deploy>0</Deploy>
-    <DeployProxy>1</DeployProxy>
+    <DeployProxy>0</DeployProxy>
     <InternalizedDlls>CodeEndeavors.ServiceHost.Common.dll</InternalizedDlls>
   </PropertyGroup>
 

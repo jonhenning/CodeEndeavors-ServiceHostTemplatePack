@@ -1,11 +1,12 @@
-﻿using CodeEndeavors.ServiceHost.Common.Services;
-using CodeEndeavors.ServiceHost.Extensions;
+﻿using CodeEndeavors.Extensions;
+using CodeEndeavors.ServiceHost.Common.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DomainObjects = $saferootprojectname$.Shared.DomainObjects;
+using Logger = CodeEndeavors.ServiceHost.Common.Services.Logging;
 
 namespace $saferootprojectname$.Client
 {
@@ -30,14 +31,9 @@ namespace $saferootprojectname$.Client
             _service = new Http.Sales(httpServiceUrl, requestTimeout, restfulServerExtension, httpUser, httpPassword, authenticationType);
         }
 
-        public void SetAquireUserIdDelegate(Func<string> func)
-        {
-            _service.SetAquireUserIdDelegate(func);
-        }
-
         public ClientCommandResult<DomainObjects.Customer> CustomerGet(int id)
         {
-            return Helpers.ExecuteClientResult<DomainObjects.Customer>(result =>
+            return ClientCommandResult<DomainObjects.Customer>.Execute(result =>
             {
                 result.ReportResult(_service.CustomerGet(id), true);
             });
@@ -45,21 +41,42 @@ namespace $saferootprojectname$.Client
 
         public ClientCommandResult<bool> CustomerSave(DomainObjects.Customer customer, int id)
         {
-            return Helpers.ExecuteClientResult<bool>(result =>
+            return ClientCommandResult<bool>.Execute(result =>
             {
                 result.ReportResult(_service.CustomerSave(customer, id), true);
             });
+        }
+
+        #region Common Client Methods
+        public void SetAquireUserIdDelegate(Func<string> func)
+        {
+            _service.SetAquireUserIdDelegate(func);
+        }
+
+        public void ConfigureLogging(string logLevel, Action<string, string> onLoggingMessage)
+        {
+            Logger.LogLevel = logLevel.ToType<Logger.LoggingLevel>();
+            Logger.OnLoggingMessage += (Logger.LoggingLevel level, string message) =>
+            {
+                if (onLoggingMessage != null)
+                    onLoggingMessage(level.ToString(), message);
+            };
         }
 
         public static void Register(string url, int requestTimeout)
         {
             ServiceLocator.Register<Client.Sales>(url, requestTimeout);
         }
+        public static void Register(string url, int requestTimeout, string httpUser, string httpPassword, AuthenticationType authenticationType)
+        {
+            ServiceLocator.Register<Client.Sales>(url, requestTimeout, httpUser, httpPassword, authenticationType);
+        }
 
         public static Client.Sales Resolve()
         {
             return ServiceLocator.Resolve<Client.Sales>();
         }
+        #endregion
 
 
 

@@ -11,10 +11,12 @@ namespace $saferootprojectname$
 {
     public class Sales : BaseService
     {
+        //private string _connection;
+
         public Sales()
         {
-            base.Configure(@"bin\$saferootprojectname$.Log4net.config", "SampleServicesLogger");
-            //_myConnection = GetConnectionString("MyConnectionString", "");
+            base.Configure();
+            //_connection = GetConnectionString("MyConnectionString", "");
         }
 
         public ServiceResult<DomainObjects.Customer> CustomerGet(int id, string userId)

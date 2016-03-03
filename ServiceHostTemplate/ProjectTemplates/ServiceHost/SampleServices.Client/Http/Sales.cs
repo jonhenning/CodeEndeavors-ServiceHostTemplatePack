@@ -1,7 +1,6 @@
-﻿using System;
+﻿using CodeEndeavors.ServiceHost.Common.Services;
+using System;
 using System.Collections.Generic;
-using CodeEndeavors.ServiceHost.Common.Services;
-using CodeEndeavors.ServiceHost.Common.Services.LoggingServices;
 using DomainObjects = $saferootprojectname$.Shared.DomainObjects;
 
 namespace $saferootprojectname$.Client.Http
@@ -9,12 +8,12 @@ namespace $saferootprojectname$.Client.Http
     public class Sales : CodeEndeavors.ServiceHost.Common.Services.BaseClientHttpService, ISalesService
     {
         public Sales(string httpServiceUrl, int requestTimeout, string restfulServerExtension)
-            : base("Sales", httpServiceUrl, requestTimeout, restfulServerExtension, Log.ConfigFileName)
+            : base("Sales", httpServiceUrl, requestTimeout, restfulServerExtension)
         {
         }
 
         public Sales(string httpServiceUrl, int requestTimeout, string restfulServerExtension, string httpUser, string httpPassword, AuthenticationType authenticationType)
-            : base("Sales", httpServiceUrl, requestTimeout, restfulServerExtension, Log.ConfigFileName, httpUser, httpPassword, authenticationType)
+            : base("Sales", httpServiceUrl, requestTimeout, restfulServerExtension, httpUser, httpPassword, authenticationType)
         {
         }
 

@@ -1,6 +1,4 @@
 ﻿using CodeEndeavors.Extensions;
-using CodeEndeavors.ServiceHost.Common.Services;
-using CodeEndeavors.ServiceHost.Common.Services.LoggingServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +23,6 @@ namespace $saferootprojectname$.Test
             get { return Client.Sales.Resolve(); }
         }
 
-
         static void Main(string[] args)
         {
             AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
@@ -37,10 +34,14 @@ namespace $saferootprojectname$.Test
                 url = endpoint;
 
             Console.WriteLine("Initializing Service ({0})", url);
-            Log.Configure("log4net.config", "SampleAppLogger");
 
             Client.Sales.Register(url, 600000);
             SalesService.SetAquireUserIdDelegate(AquireUserId);
+
+            SalesService.ConfigureLogging("Debug", (string level, string message) =>
+                {
+                    RecordMessage(string.Format("{0}:{1}", level, message));
+                });
 
             string command = "";
             while (command.ToLower() != "exit")
@@ -57,7 +58,7 @@ namespace $saferootprojectname$.Test
                     {
                         case "getcustomer":
                             {
-                                WriteCommandResult(DoGetCustomer(commandParts));
+                                DoGetCustomer(commandParts);
                                 break;
                             }
                         default:
@@ -69,35 +70,25 @@ namespace $saferootprojectname$.Test
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex);
-                    Console.WriteLine(ex.Message);
+                    RecordMessage(ex.Message);
                 }
             }
         }
 
-
-        private static ClientCommandResult<DomainObjects.Customer> DoGetCustomer(string[] commandParts)
-        {var id = 1;
-
+        private static Client.ClientCommandResult<DomainObjects.Customer> DoGetCustomer(string[] commandParts)
+        {
+            var id = 1;
             if (commandParts.Length > 1)
                 id = int.Parse(commandParts[1]);
 
-            RecordMessage(String.Format("Performing CustomerGet({0})", id));
-
             var cr = SalesService.CustomerGet(id);
-            Console.WriteLine(cr.Data.ToJson(true));
+            RecordMessage(cr.Data.ToJson(true));
             return cr;
         }
 
         private static void RecordMessage(string Message)
         {
-            Log.Info(Message);
             Console.WriteLine(Message);
-        }
-
-        private static void WriteCommandResult<T>(ClientCommandResult<T> ccr)
-        {
-            RecordMessage(ccr.ToString());
         }
 
         public static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)

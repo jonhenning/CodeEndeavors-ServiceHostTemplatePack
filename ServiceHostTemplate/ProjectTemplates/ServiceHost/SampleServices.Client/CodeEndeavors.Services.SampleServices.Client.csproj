@@ -30,16 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CodeEndeavors.Extensions, Version=1.0.12.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CodeEndeavors.Extensions, Version=2.0.7.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CodeEndeavors.Extensions.1.0.12\lib\4.0\CodeEndeavors.Extensions.dll</HintPath>
+      <HintPath>..\packages\CodeEndeavors.Extensions.2.0.7\lib\net45\CodeEndeavors.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="CodeEndeavors.ServiceHost.Common, Version=1.0.32.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CodeEndeavors.ServiceHost.Common.1.0.32\lib\4.5\CodeEndeavors.ServiceHost.Common.dll</HintPath>
+    <Reference Include="CodeEndeavors.ServiceHost.Common, Version=2.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CodeEndeavors.ServiceHost.Common.2.0.6\lib\4.5\CodeEndeavors.ServiceHost.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -54,6 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sales.cs" />
     <Compile Include="ServiceInterfaces.cs" />
+    <Compile Include="ClientCommandResult.cs" />
     <Compile Include="Stubs\Sales.cs" />
   </ItemGroup>
   <ItemGroup>

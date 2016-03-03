@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="ProjectTemplates\ServiceHost\SampleServices.Client\Http\Sales.cs" />
     <Compile Include="ProjectTemplates\ServiceHost\SampleServices.Client\Properties\AssemblyInfo.cs" />
+    <Compile Include="ProjectTemplates\ServiceHost\SampleServices.Client\ClientCommandResult.cs" />
     <Compile Include="ProjectTemplates\ServiceHost\SampleServices.Client\Sales.cs" />
     <Compile Include="ProjectTemplates\ServiceHost\SampleServices.Client\ServiceInterfaces.cs" />
     <Compile Include="ProjectTemplates\ServiceHost\SampleServices.Client\Stubs\Sales.cs" />
@@ -108,6 +109,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\NLog.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\System.Net.Http.Extensions.Compression.Core.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -121,7 +126,6 @@
     </None>
     <None Include="ProjectTemplates\ServiceHost\SampleServices.Client\packages.config" />
     <None Include="ProjectTemplates\ServiceHost\SampleServices.Test\App.config" />
-    <None Include="ProjectTemplates\ServiceHost\SampleServices.Test\log4net.config" />
     <None Include="ProjectTemplates\ServiceHost\SampleServices.Test\packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -129,7 +133,6 @@
     <None Include="ProjectTemplates\ServiceHost\SampleServices\build.targets">
       <SubType>Designer</SubType>
     </None>
-    <None Include="ProjectTemplates\ServiceHost\SampleServices\Service.log4net.config" />
     <None Include="ProjectTemplates\ServiceHost\SampleServices\packages.config" />
     <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\CodeEndeavors.Extensions.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -206,6 +209,10 @@
     </Content>
     <Content Include="ProjectTemplates\ServiceHost\lib\MSBuildTargets\MSBuild.Community.Tasks.Targets">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="Properties\template-builder.props">
