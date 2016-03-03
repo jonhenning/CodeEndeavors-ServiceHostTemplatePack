@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CodeEndeavors.ServiceHost.Common.Services;
 
 namespace $saferootprojectname$.Client.Stubs

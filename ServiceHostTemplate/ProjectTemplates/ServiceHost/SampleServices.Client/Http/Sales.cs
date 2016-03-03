@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CodeEndeavors.ServiceHost.Common.Services;
 using CodeEndeavors.ServiceHost.Common.Services.LoggingServices;
 using DomainObjects = $saferootprojectname$.Shared.DomainObjects;

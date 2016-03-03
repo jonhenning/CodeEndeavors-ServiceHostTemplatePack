@@ -9,7 +9,10 @@
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
   </TemplateData>
   <TemplateContent>
-    <References />
+    <References>
+      <Reference><Assembly>System.ComponentModel.Composition</Assembly></Reference>
+      <Reference><Assembly>System.ComponentModel.DataAnnotations</Assembly></Reference>
+    </References>
     <ProjectItem ReplaceParameters="true" TargetFileName="$safeitemname$.tt">data.t4</ProjectItem>
     <ProjectItem ReplaceParameters="true" TargetFileName="EF.Reverse.CE.POCO.ttinclude">EF.Reverse.CE.POCO.ttinclude</ProjectItem>
     <ProjectItem ReplaceParameters="true" TargetFileName="EF.Reverse.POCO.Core.ttinclude">EF.Reverse.POCO.Core.ttinclude</ProjectItem>
