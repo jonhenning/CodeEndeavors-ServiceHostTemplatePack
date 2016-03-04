@@ -67,9 +67,9 @@ namespace $saferootprojectname$.Client
         {
             ServiceLocator.Register<Client.Sales>(url, requestTimeout);
         }
-        public static void Register(string url, int requestTimeout, string httpUser, string httpPassword, AuthenticationType authenticationType)
+        public static void Register(string url, int requestTimeout, string httpUser, string httpPassword, string authenticationType)
         {
-            ServiceLocator.Register<Client.Sales>(url, requestTimeout, httpUser, httpPassword, authenticationType);
+            ServiceLocator.Register<Client.Sales>(url, requestTimeout, httpUser, httpPassword, authenticationType.ToType<AuthenticationType>());
         }
 
         public static Client.Sales Resolve()

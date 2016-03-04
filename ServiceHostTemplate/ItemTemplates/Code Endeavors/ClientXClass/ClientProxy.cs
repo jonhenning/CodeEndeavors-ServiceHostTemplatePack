@@ -59,9 +59,9 @@ namespace $defaultnamespace$
         {
             ServiceLocator.Register<Client.$safeitemname$>(url, requestTimeout);
         }
-        public static void Register(string url, int requestTimeout, string httpUser, string httpPassword, AuthenticationType authenticationType)
+        public static void Register(string url, int requestTimeout, string httpUser, string httpPassword, string authenticationType)
         {
-            ServiceLocator.Register<Client.$safeitemname$>(url, requestTimeout, httpUser, httpPassword, authenticationType);
+            ServiceLocator.Register<Client.$safeitemname$>(url, requestTimeout, httpUser, httpPassword, authenticationType.ToType<AuthenticationType>());
         }
 
         public static Client.$safeitemname$ Resolve()
