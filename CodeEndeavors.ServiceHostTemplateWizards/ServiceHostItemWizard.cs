@@ -24,6 +24,7 @@ namespace CodeEndeavors.ServiceHostTemplateWizards
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, Microsoft.VisualStudio.TemplateWizard.WizardRunKind runKind, object[] customParams)
         {
             replacementsDictionary["$destinationdirectory$"] = replacementsDictionary["$solutiondirectory$"]; //make it same as project...
+            replacementsDictionary["$lowercasesafeitemname$"] = replacementsDictionary["$safeitemname$"].ToLower();
 
             _replacementsDictionary = replacementsDictionary;
             //if (NewWidgetItemForm.ShowDialog(replacementsDictionary, automationObject as DTE) == false)

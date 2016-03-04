@@ -12,6 +12,17 @@ namespace $saferootprojectname$
     public class Sales : BaseService
     {
         //private string _connection;
+        private static Sales _salesService;
+
+        public static Sales SalesService
+        {
+            get
+            {
+                if (_salesService == null)
+                    _salesService = new Sales();
+                return _salesService;
+            }
+        }
 
         public Sales()
         {

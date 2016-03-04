@@ -12,17 +12,7 @@ namespace $saferootprojectname$.Controllers
 {
     public class SalesController : BaseController
     {
-        private static Sales _salesService;
-
-        private Sales SalesService
-        {
-            get
-            {
-                if (_salesService == null)
-                    _salesService = new Sales();
-                return _salesService;
-            }
-        }
+        
 
         /// <summary>
         /// Returns sample customer
@@ -32,13 +22,13 @@ namespace $saferootprojectname$.Controllers
         [HttpGet]
         public ServiceResult<DomainObjects.Customer> CustomerGet(string userId, int id)
         {
-            return SalesService.CustomerGet(id, userId);
+            return Sales.SalesService.CustomerGet(id, userId);
         }
 
         [HttpPost]
         public ServiceResult<bool> CustomerSave(string userId, [FromBody]DomainObjects.Customer customer)
         {
-            return SalesService.CustomerSave(customer, userId);
+            return Sales.SalesService.CustomerSave(customer, userId);
         }
 
 
