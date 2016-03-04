@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TemplateReport>
   <ItemTemplates>
+    <ItemTemplate Path="ItemTemplates\Code Endeavors\ClientCommandResult\Definitions\CSharp.vstemplate" Name="Client Command Result" Description="Client Command Result Class" ProjectType="CSharp" ProjectSubType="" />
     <ItemTemplate Path="ItemTemplates\Code Endeavors\ClientXClass\Definitions\CSharp.vstemplate" Name="Client Proxy" Description="Client Proxy Class" ProjectType="CSharp" ProjectSubType="" />
     <ItemTemplate Path="ItemTemplates\Code Endeavors\DataEF6T4\Definitions\CSharp.vstemplate" Name="Data E6 T4 Template" Description="Data T4 files for Entity Framework 6" ProjectType="CSharp" ProjectSubType="" />
     <ItemTemplate Path="ItemTemplates\Code Endeavors\DomainEF6T4\Definitions\CSharp.vstemplate" Name="DomainObject E6 T4 Template" Description="Domain Object T4 files for Entity Framework 6" ProjectType="CSharp" ProjectSubType="" />

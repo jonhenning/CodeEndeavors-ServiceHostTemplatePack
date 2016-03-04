@@ -72,6 +72,7 @@
     <TemplateBuilderTargets Condition=" '$(TemplateBuilderTargets)'=='' ">$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\..\packages\TemplateBuilder.1.1.3\tools\ligershark.templates.targets ))</TemplateBuilderTargets>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ItemTemplates\Code Endeavors\ClientCommandResult\ClientCommandResult.cs" />
     <Compile Include="ItemTemplates\Code Endeavors\ClientXClass\ClientProxy.cs" />
     <Compile Include="ItemTemplates\Code Endeavors\ClientXClass\Http.cs" />
     <Compile Include="ItemTemplates\Code Endeavors\ClientXClass\ServiceInterface.cs" />
@@ -107,6 +108,9 @@
     <None Include="ItemTemplates\Code Endeavors\DataEF6T4\Mapping\EF.Reverse.POCO.ttinclude" />
     <None Include="key.snk" />
     <None Include="packages.config" />
+    <Content Include="ItemTemplates\Code Endeavors\ClientCommandResult\Definitions\CSharp.vstemplate">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ItemTemplates\Code Endeavors\ClientXClass\Definitions\CSharp.vstemplate" />
     <Content Include="ItemTemplates\Code Endeavors\DomainEF6T4\Definitions\CSharp.vstemplate" />
     <Content Include="ItemTemplates\Code Endeavors\DataEF6T4\Definitions\CSharp.vstemplate" />
