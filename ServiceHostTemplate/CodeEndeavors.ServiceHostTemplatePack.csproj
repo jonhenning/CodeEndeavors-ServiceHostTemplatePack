@@ -72,6 +72,10 @@
     <TemplateBuilderTargets Condition=" '$(TemplateBuilderTargets)'=='' ">$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\..\packages\TemplateBuilder.1.1.3\tools\ligershark.templates.targets ))</TemplateBuilderTargets>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ItemTemplates\Code Endeavors\ClientXClass\ClientProxy.cs" />
+    <Compile Include="ItemTemplates\Code Endeavors\ClientXClass\Http.cs" />
+    <Compile Include="ItemTemplates\Code Endeavors\ClientXClass\ServiceInterface.cs" />
+    <Compile Include="ItemTemplates\Code Endeavors\ClientXClass\Stub.cs" />
     <Compile Include="ProjectTemplates\ServiceHost\SampleServices.Client\Http\Sales.cs" />
     <Compile Include="ProjectTemplates\ServiceHost\SampleServices.Client\Properties\AssemblyInfo.cs" />
     <Compile Include="ProjectTemplates\ServiceHost\SampleServices.Client\ClientCommandResult.cs" />
@@ -103,6 +107,7 @@
     <None Include="ItemTemplates\Code Endeavors\DataEF6T4\Mapping\EF.Reverse.POCO.ttinclude" />
     <None Include="key.snk" />
     <None Include="packages.config" />
+    <Content Include="ItemTemplates\Code Endeavors\ClientXClass\Definitions\CSharp.vstemplate" />
     <Content Include="ItemTemplates\Code Endeavors\DomainEF6T4\Definitions\CSharp.vstemplate" />
     <Content Include="ItemTemplates\Code Endeavors\DataEF6T4\Definitions\CSharp.vstemplate" />
     <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\Microsoft.AspNet.WebApi.Extensions.Compression.Server.dll">
@@ -120,6 +125,7 @@
     <Content Include="ProjectTemplates\ServiceHost\ServiceHost\web.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="ProjectTemplates\ServiceHost\SampleServices.Client\build.targets">
       <SubType>Designer</SubType>

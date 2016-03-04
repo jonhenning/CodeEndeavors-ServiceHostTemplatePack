@@ -1,0 +1,22 @@
+﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Item">
+    <TemplateData>
+        <ProjectType>CSharp</ProjectType>
+        <DefaultName>ClientProxy.cs</DefaultName>
+        <Name>Client Proxy</Name>
+        <Description>Client Proxy Class</Description>
+        <Icon>icon.png</Icon>
+        <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    </TemplateData>
+    <TemplateContent>
+        <References>
+        </References>
+        <ProjectItem ReplaceParameters="true" TargetFileName="$safeitemname$.cs">ClientProxy.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Http\$safeitemname$.cs">Http.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Stubs\$safeitemname$.cs">Stub.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="I$safeitemname$Service.cs">ServiceInterface.cs</ProjectItem>
+    </TemplateContent>
+    <WizardExtension>
+        <Assembly>CodeEndeavors.ServiceHostTemplateWizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
+        <FullClassName>CodeEndeavors.ServiceHostTemplateWizards.ServiceHostItemWizard</FullClassName>
+    </WizardExtension>
+</VSTemplate>
