@@ -12,6 +12,7 @@ using EnvDTE80;
 using System.Threading;
 using System.Linq;
 using Microsoft.Web.Administration;
+using System.Security.AccessControl;
 
 namespace CodeEndeavors.ServiceHostTemplateWizards
 {
@@ -70,7 +71,7 @@ namespace CodeEndeavors.ServiceHostTemplateWizards
             //Get the projects directory from first project.
             var originalProjectsDir = Path.GetDirectoryName(Path.GetDirectoryName(projects.First().FullName));
             if (originalProjectsDir == null) return;
-            var tempProjectsDir = originalProjectsDir + ".temp";
+            var tempProjectsDir = originalProjectsDir + ".temp"; //name.temp and name dirs 
 
             var solutionDir = new DirectoryInfo(originalProjectsDir).Parent.FullName;
             //var solutionStructure = projects.Select(p => new KeyValuePair<Project, string>(null, Path.Combine(solutionDir, Path.GetFileNameWithoutExtension(Path.GetFileName(p.FullName))))).ToList();
@@ -183,8 +184,23 @@ namespace CodeEndeavors.ServiceHostTemplateWizards
                         PSHostsFile.HostsFile.Set(name, "127.0.0.1");
                 }
 
+                setFolderPermissions(serviceHostDir, @"iis apppool\" + name);
             }
         }
+
+        private static void setFolderPermissions(string dirPath, string user)
+        {
+            var dir = new DirectoryInfo(dirPath);
+            var ds = dir.GetAccessControl();
+            ds.AddAccessRule(new FileSystemAccessRule(user,
+            FileSystemRights.FullControl,
+            InheritanceFlags.ObjectInherit |
+            InheritanceFlags.ContainerInherit,
+            PropagationFlags.None,
+            AccessControlType.Allow));
+            dir.SetAccessControl(ds);
+        }
+
 
         private void safeCopy(string from, string to, bool bypassError = false)
         {
