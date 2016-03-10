@@ -25,7 +25,7 @@ namespace $defaultnamespace$
             Helpers.HandleAssemblyResolve();
             _service = new Http.$safeitemname$(httpServiceUrl, requestTimeout, restfulServerExtension);
         }
-        public $safeitemname$(string httpServiceUrl, int requestTimeout, string restfulServerExtension, string httpUser, string httpPassword, AuthenticationType authenticationType)
+        public $safeitemname$(string httpServiceUrl, int requestTimeout, string restfulServerExtension, string httpUser, string httpPassword, string authenticationType)
         {
             Helpers.HandleAssemblyResolve();
             _service = new Http.$safeitemname$(httpServiceUrl, requestTimeout, restfulServerExtension, httpUser, httpPassword, authenticationType);
