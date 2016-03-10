@@ -12,7 +12,7 @@ namespace $saferootprojectname$.Client.Http
         {
         }
 
-        public Sales(string httpServiceUrl, int requestTimeout, string restfulServerExtension, string httpUser, string httpPassword, AuthenticationType authenticationType)
+        public Sales(string httpServiceUrl, int requestTimeout, string restfulServerExtension, string httpUser, string httpPassword, string authenticationType)
             : base("Sales", httpServiceUrl, requestTimeout, restfulServerExtension, httpUser, httpPassword, authenticationType)
         {
         }

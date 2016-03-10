@@ -12,7 +12,7 @@ namespace $defaultnamespace$.Http
         {
         }
 
-        public $safeitemname$(string httpServiceUrl, int requestTimeout, string restfulServerExtension, string httpUser, string httpPassword, AuthenticationType authenticationType)
+        public $safeitemname$(string httpServiceUrl, int requestTimeout, string restfulServerExtension, string httpUser, string httpPassword, string authenticationType)
             : base("$safeitemname$", httpServiceUrl, requestTimeout, restfulServerExtension, httpUser, httpPassword, authenticationType)
         {
         }
