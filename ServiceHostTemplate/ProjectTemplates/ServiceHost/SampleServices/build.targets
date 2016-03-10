@@ -20,8 +20,11 @@
     <ItemGroup>
       <ServiceHostBins Include="$(ServiceHostBin)" />
     </ItemGroup>
+    <ItemGroup>
+      <DllDependencies Include="" />
+    </ItemGroup>
 
-  <Import Project="$(CommonLibDir)\MSBuildTargets\MSBuild.Community.Tasks.Targets" Condition="Exists('$(CommonLibDir)\MSBuildTargets\MSBuild.Community.Tasks.Targets')"/>
+    <Import Project="$(CommonLibDir)\MSBuildTargets\MSBuild.Community.Tasks.Targets" Condition="Exists('$(CommonLibDir)\MSBuildTargets\MSBuild.Community.Tasks.Targets')"/>
 
     <Target Name="AfterBuild">
         <CallTarget Targets="InternalizeDependencies" />
