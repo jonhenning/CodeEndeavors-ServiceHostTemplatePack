@@ -21,7 +21,7 @@
       <ServiceHostBins Include="$(ServiceHostBin)" />
     </ItemGroup>
     <ItemGroup>
-      <DllDependencies Include="" />
+      <!--<DllDependencies Include="" />-->
     </ItemGroup>
 
     <Import Project="$(CommonLibDir)\MSBuildTargets\MSBuild.Community.Tasks.Targets" Condition="Exists('$(CommonLibDir)\MSBuildTargets\MSBuild.Community.Tasks.Targets')"/>
