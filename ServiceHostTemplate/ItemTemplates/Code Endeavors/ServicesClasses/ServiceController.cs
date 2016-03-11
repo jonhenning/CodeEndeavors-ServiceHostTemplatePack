@@ -10,7 +10,7 @@ using DomainObjects = $solutionname$.Shared.DomainObjects;
 
 namespace $defaultnamespace$.Controllers
 {
-    public class $safeitemname$Controller : BaseController
+    public class $safeitemname$ : BaseController
     {
         
 
