@@ -25,7 +25,7 @@ namespace $saferootprojectname$.Client
             Helpers.HandleAssemblyResolve();
             _service = new Http.Sales(httpServiceUrl, requestTimeout, restfulServerExtension);
         }
-        public Sales(string httpServiceUrl, int requestTimeout, string restfulServerExtension, string httpUser, string httpPassword, AuthenticationType authenticationType)
+        public Sales(string httpServiceUrl, int requestTimeout, string restfulServerExtension, string httpUser, string httpPassword, string authenticationType)
         {
             Helpers.HandleAssemblyResolve();
             _service = new Http.Sales(httpServiceUrl, requestTimeout, restfulServerExtension, httpUser, httpPassword, authenticationType);
