@@ -12,6 +12,7 @@
     <References>
       <Reference><Assembly>System.ComponentModel.Composition</Assembly></Reference>
       <Reference><Assembly>System.ComponentModel.DataAnnotations</Assembly></Reference>
+      <Reference><Assembly>System.Data</Assembly></Reference>
     </References>
     <ProjectItem ReplaceParameters="true" TargetFileName="$safeitemname$.tt">data.t4</ProjectItem>
     <ProjectItem ReplaceParameters="true" TargetFileName="EF.Reverse.CE.POCO.ttinclude">EF.Reverse.CE.POCO.ttinclude</ProjectItem>
@@ -28,5 +29,9 @@
     <Assembly>CodeEndeavors.ServiceHostTemplateWizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
     <FullClassName>CodeEndeavors.ServiceHostTemplateWizards.ServiceHostItemWizard</FullClassName>
   </WizardExtension>
-
+  <!--<WizardData>
+    <packages repository="extension" repositoryId="CodeEndeavors.ServiceHostTemplatePack..a3158e73-d833-491c-83c3-b0ddda14f7ac">
+      <package id="EntityFramework" version="6.1.3"/>
+    </packages>
+  </WizardData>-->
 </VSTemplate>

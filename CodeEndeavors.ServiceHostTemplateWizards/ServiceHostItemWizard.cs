@@ -7,12 +7,14 @@ using Microsoft.Win32;
 using Microsoft.VisualStudio.TemplateWizard;
 using System.Linq;
 using EnvDTE100;
+using System.Reflection;
 
 namespace CodeEndeavors.ServiceHostTemplateWizards
 {
     public class ServiceHostItemWizard : Microsoft.VisualStudio.TemplateWizard.IWizard
     {
         private Dictionary<string, string> _replacementsDictionary = null;
+        //private IWizard wizard;
 
         public void ProjectFinishedGenerating(Project project)
         {
@@ -25,11 +27,27 @@ namespace CodeEndeavors.ServiceHostTemplateWizards
         {
             replacementsDictionary["$destinationdirectory$"] = replacementsDictionary["$solutiondirectory$"]; //make it same as project...
             replacementsDictionary["$lowercasesafeitemname$"] = replacementsDictionary["$safeitemname$"].ToLower();
-
+            var safeItemName = replacementsDictionary["$safeitemname$"];
+            if (safeItemName.Contains("Map"))
+            {
+                replacementsDictionary["$nomapitemname$"] = safeItemName.Replace("Map", "").Replace("Ext", "");
+            }
+            if (safeItemName.Contains("Ext"))
+            {
+                replacementsDictionary["$safeextensionname$"] = safeItemName;
+                replacementsDictionary["$originalsafeitemname$"] = safeItemName.Replace("Ext", "");
+            }
+            else
+            {
+                replacementsDictionary["$safeextensionname$"] = safeItemName + "Ext";
+                replacementsDictionary["$originalsafeitemname$"] = safeItemName;
+            }
             _replacementsDictionary = replacementsDictionary;
             //if (NewWidgetItemForm.ShowDialog(replacementsDictionary, automationObject as DTE) == false)
             //    throw new WizardCancelledException("The wizard has been cancelled by the user.");
-
+            //Assembly asm = Assembly.Load("NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=b03f5f7f11d50a3a");
+            //wizard = (IWizard)asm.CreateInstance("NuGet.VisualStudio.TemplateWizard");
+            //wizard.RunStarted(automationObject, replacementsDictionary, runKind, customParams);
             try
             {
                 _DTE dte = automationObject as _DTE;

@@ -77,6 +77,9 @@
     <Compile Include="ItemTemplates\Code Endeavors\ClientXClass\Http.cs" />
     <Compile Include="ItemTemplates\Code Endeavors\ClientXClass\ServiceInterface.cs" />
     <Compile Include="ItemTemplates\Code Endeavors\ClientXClass\Stub.cs" />
+    <Compile Include="ItemTemplates\Code Endeavors\MappingExt\MappingExt.cs" />
+    <Compile Include="ItemTemplates\Code Endeavors\DomainObjectExt\DomainObjectExt.cs" />
+    <Compile Include="ItemTemplates\Code Endeavors\PocoObject\PocoObject.cs" />
     <Compile Include="ItemTemplates\Code Endeavors\ServicesClasses\Service.cs" />
     <Compile Include="ItemTemplates\Code Endeavors\ServicesClasses\ServiceController.cs" />
     <Compile Include="ProjectTemplates\ServiceHost\SampleServices.Client\Http\Sales.cs" />
@@ -96,6 +99,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="ItemTemplates\Code Endeavors\DomainEF6T4\data.t4" />
     <None Include="ItemTemplates\Code Endeavors\DomainEF6T4\EF.Reverse.CE.POCO.ttinclude" />
     <None Include="ItemTemplates\Code Endeavors\DomainEF6T4\EF.Reverse.POCO.Core.ttinclude" />
@@ -110,6 +114,15 @@
     <None Include="ItemTemplates\Code Endeavors\DataEF6T4\Mapping\EF.Reverse.POCO.ttinclude" />
     <None Include="key.snk" />
     <None Include="packages.config" />
+    <Content Include="ItemTemplates\Code Endeavors\MappingExt\Definitions\CSharp.vstemplate">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ItemTemplates\Code Endeavors\DomainObjectExt\Definitions\CSharp.vstemplate">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ItemTemplates\Code Endeavors\PocoObject\Definitions\CSharp.vstemplate">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ItemTemplates\Code Endeavors\ServicesClasses\Definitions\CSharp.vstemplate">
       <SubType>Designer</SubType>
     </Content>
@@ -120,7 +133,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="ItemTemplates\Code Endeavors\DomainEF6T4\Definitions\CSharp.vstemplate" />
-    <Content Include="ItemTemplates\Code Endeavors\DataEF6T4\Definitions\CSharp.vstemplate" />
+    <Content Include="ItemTemplates\Code Endeavors\DataEF6T4\Definitions\CSharp.vstemplate">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\Microsoft.AspNet.WebApi.Extensions.Compression.Server.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -138,6 +153,10 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Packages\EntityFramework.6.1.3.nupkg">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ProjectTemplates\ServiceHost\SampleServices.Client\build.targets">
       <SubType>Designer</SubType>
     </None>
@@ -150,7 +169,9 @@
     <None Include="ProjectTemplates\ServiceHost\SampleServices\build.targets">
       <SubType>Designer</SubType>
     </None>
-    <None Include="ProjectTemplates\ServiceHost\SampleServices\packages.config" />
+    <None Include="ProjectTemplates\ServiceHost\SampleServices\packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\CodeEndeavors.Extensions.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -275,7 +296,9 @@
     <Content Include="ProjectTemplates\ServiceHost\SampleServices\CodeEndeavors.Services.SampleServices.csproj">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="ProjectTemplates\ServiceHost\SampleServices\MyTemplate.vstemplate" />
+    <Content Include="ProjectTemplates\ServiceHost\SampleServices\MyTemplate.vstemplate">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ProjectTemplates\ServiceHost\lib\ILMerge.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>

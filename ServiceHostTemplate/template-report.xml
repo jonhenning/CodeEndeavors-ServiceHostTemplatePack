@@ -5,6 +5,9 @@
     <ItemTemplate Path="ItemTemplates\Code Endeavors\ClientXClass\Definitions\CSharp.vstemplate" Name="Client Proxy" Description="Client Proxy Class" ProjectType="CSharp" ProjectSubType="" />
     <ItemTemplate Path="ItemTemplates\Code Endeavors\DataEF6T4\Definitions\CSharp.vstemplate" Name="Data E6 T4 Template" Description="Data T4 files for Entity Framework 6" ProjectType="CSharp" ProjectSubType="" />
     <ItemTemplate Path="ItemTemplates\Code Endeavors\DomainEF6T4\Definitions\CSharp.vstemplate" Name="DomainObject E6 T4 Template" Description="Domain Object T4 files for Entity Framework 6" ProjectType="CSharp" ProjectSubType="" />
+    <ItemTemplate Path="ItemTemplates\Code Endeavors\DomainObjectExt\Definitions\CSharp.vstemplate" Name="DomainObjectExt" Description="Poco For Domain Object Extention" ProjectType="CSharp" ProjectSubType="" />
+    <ItemTemplate Path="ItemTemplates\Code Endeavors\MappingExt\Definitions\CSharp.vstemplate" Name="ObjectMapExt" Description="Poco For Domain Object Extention" ProjectType="CSharp" ProjectSubType="" />
+    <ItemTemplate Path="ItemTemplates\Code Endeavors\PocoObject\Definitions\CSharp.vstemplate" Name="Poco Object" Description="Poco Object For Domain or Transport Objects" ProjectType="CSharp" ProjectSubType="" />
     <ItemTemplate Path="ItemTemplates\Code Endeavors\ServicesClasses\Definitions\CSharp.vstemplate" Name="Services" Description="Services And Controller Class" ProjectType="CSharp" ProjectSubType="" />
   </ItemTemplates>
   <ProjectTemplates>

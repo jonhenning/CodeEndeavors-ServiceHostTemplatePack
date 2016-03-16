@@ -1,0 +1,19 @@
+﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Item">
+    <TemplateData>
+        <ProjectType>CSharp</ProjectType>
+        <DefaultName>ObjectMap</DefaultName>
+        <Name>ObjectMapExt</Name>
+        <Description>Poco For Domain Object Extention</Description>
+        <Icon>icon.png</Icon>
+        <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    </TemplateData>
+    <TemplateContent>
+        <References>
+        </References>
+        <ProjectItem ReplaceParameters="true" TargetFileName="$safeextensionname$.cs">MappingExt.cs</ProjectItem>
+    </TemplateContent>
+    <WizardExtension>
+        <Assembly>CodeEndeavors.ServiceHostTemplateWizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
+        <FullClassName>CodeEndeavors.ServiceHostTemplateWizards.ServiceHostItemWizard</FullClassName>
+    </WizardExtension>
+</VSTemplate>
