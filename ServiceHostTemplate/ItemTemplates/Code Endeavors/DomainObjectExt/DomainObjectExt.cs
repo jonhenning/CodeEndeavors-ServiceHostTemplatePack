@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace $defaultnamespace$
+namespace $defaultnamespace$.DomainObjects
 {
     public partial class $originalsafeitemname$ 
     {
