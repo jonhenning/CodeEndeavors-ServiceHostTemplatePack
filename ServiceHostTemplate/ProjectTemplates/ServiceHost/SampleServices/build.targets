@@ -13,7 +13,7 @@
         <CommonLibDir>$(RootDir)\lib</CommonLibDir>
         <ServiceDir>$(RootDir)\service</ServiceDir>
         <ServiceHostBin>$servicehostdir$\bin</ServiceHostBin>
-        <ProvisioningDir>$servicehostdir$</ProvisioningDir>
+        <ProvisioningDir>$servicehostdir$\bin</ProvisioningDir>
         <ProgramFiles32 Condition="Exists('$(PROGRAMFILES) (x86)')">$(PROGRAMFILES) (x86)</ProgramFiles32>
         <ProgramFiles32 Condition="$(ProgramFiles32) == ''">$(PROGRAMFILES)</ProgramFiles32>
         <ILMergeTargetPlatform>/targetplatform:v4,"$(PROGRAMFILES)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5"</ILMergeTargetPlatform>
