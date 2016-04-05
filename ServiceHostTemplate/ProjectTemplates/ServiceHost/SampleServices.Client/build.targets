@@ -14,15 +14,14 @@
     <RedistDir>$(RootDir)\redist</RedistDir>
     <CommonLibDir>$(RootDir)\lib</CommonLibDir>
     <ClientDir>$(RootDir)\client</ClientDir>
-    <DeployDir>$(RootDir)\..\</DeployDir>
-    <ServiceHostBin>$servicehostdir$\bin</ServiceHostBin>
+    <DeployDir></DeployDir>
     <ProvisioningDir></ProvisioningDir>
     <ProgramFiles32 Condition="Exists('$(PROGRAMFILES) (x86)')">$(PROGRAMFILES) (x86)</ProgramFiles32>
     <ProgramFiles32 Condition="$(ProgramFiles32) == ''">$(PROGRAMFILES)</ProgramFiles32>
     <ILMergeTargetPlatform>/targetplatform:v4,"$(PROGRAMFILES)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5"</ILMergeTargetPlatform>
   </PropertyGroup>
   <ItemGroup>
-    <ServiceHostBins Include="$(ServiceHostBin)" />
+    <DeployDirs Include="$(DeployDir)" />
   </ItemGroup>
   <ItemGroup>
     <ProvisioningDirs Include="$(ProvisioningDir)" />
@@ -34,7 +33,6 @@
     <CallTarget Targets="InternalizeDependencies" />
     <CallTarget Targets="CreateSetupPackage" />
     <CallTarget Targets="DeployPackage" />
-    <CallTarget Targets="DeployProxyToHost" />
   </Target>
 
   <Target Name="InternalizeDependencies">
@@ -62,13 +60,8 @@
   </Target>
 
   <Target Name="DeployPackage" Condition="$(Deploy) == '1'">
-    <Copy SourceFiles="$(RedistDir)\$(ExternalClientName).zip" DestinationFolder="$(DeployDir)" SkipUnchangedFiles="false" />
-    <Unzip TargetDirectory="$(DeployDir)" ZipFileName="$(DeployDir)\$(ExternalClientName).zip" />
-  </Target>
-  <Target Name="DeployProxyToHost" Condition="$(DeployProxy) == '1'">
-    <Copy SourceFiles="$(RedistDir)\$(ExternalClientName).zip" DestinationFolder="%(ServiceHostBins.FullPath)" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(RedistDir)\$(ExternalClientName).zip" DestinationFolder="%(DeployDirs.FullPath)\_updates" Condition="$(DeployDir) != ''" />
     <Copy SourceFiles="$(RedistDir)\$(ExternalClientName).zip" DestinationFolder="%(ProvisioningDirs.FullPath)" SkipUnchangedFiles="false" Condition="$(ProvisioningDir) != ''" />
-    <Unzip TargetDirectory="%(ServiceHostBins.FullPath)" ZipFileName="%(ServiceHostBins.FullPath)\$(ExternalClientName).zip" />
   </Target>
 
 
