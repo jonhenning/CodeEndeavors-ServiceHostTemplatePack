@@ -136,6 +136,10 @@
     <Content Include="ItemTemplates\Code Endeavors\DataEF6T4\Definitions\CSharp.vstemplate">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\ICSharpCode.SharpZipLib.dll">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="ProjectTemplates\ServiceHost\ServiceHost\bin\Microsoft.AspNet.WebApi.Extensions.Compression.Server.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>

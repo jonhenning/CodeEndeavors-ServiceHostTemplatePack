@@ -63,6 +63,5 @@
     <Copy SourceFiles="$(RedistDir)\$(ExternalClientName).zip" DestinationFolder="%(DeployDirs.FullPath)\_updates" Condition="$(DeployDir) != ''" />
     <Copy SourceFiles="$(RedistDir)\$(ExternalClientName).zip" DestinationFolder="%(ProvisioningDirs.FullPath)" SkipUnchangedFiles="false" Condition="$(ProvisioningDir) != ''" />
   </Target>
-
-
+  
 </Project>
