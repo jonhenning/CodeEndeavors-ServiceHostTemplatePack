@@ -67,7 +67,7 @@
   </Target>
   <Target Name="DeployProxyToHost" Condition="$(DeployProxy) == '1'">
     <Copy SourceFiles="$(RedistDir)\$(ExternalClientName).zip" DestinationFolder="%(ServiceHostBins.FullPath)" SkipUnchangedFiles="false" />
-    <Copy SourceFiles="$(RedistDir)\$(ExternalClientName).zip" DestinationFolder="%(ProvisioningDirs.FullPath)" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(RedistDir)\$(ExternalClientName).zip" DestinationFolder="%(ProvisioningDirs.FullPath)" SkipUnchangedFiles="false" Condition="$(ProvisioningDir) != ''" />
     <Unzip TargetDirectory="%(ServiceHostBins.FullPath)" ZipFileName="%(ServiceHostBins.FullPath)\$(ExternalClientName).zip" />
   </Target>
 

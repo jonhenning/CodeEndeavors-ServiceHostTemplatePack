@@ -62,7 +62,7 @@
       <Copy SourceFiles="$(TargetDir)\CodeEndeavors.ServiceHost.Common.dll" DestinationFolder="%(ServiceHostBins.FullPath)" Condition="!Exists('%(ServiceHostBins.FullPath)\CodeEndeavors.ServiceHost.Common.dll')" />
 
       <Copy SourceFiles="$(RedistDir)\$(ProjectFullName).zip" DestinationFolder="%(ServiceHostBins.FullPath)" SkipUnchangedFiles="false" />
-      <Copy SourceFiles="$(RedistDir)\$(ProjectFullName).zip" DestinationFolder="%(ProvisioningDirs.FullPath)" SkipUnchangedFiles="false" />
+      <Copy SourceFiles="$(RedistDir)\$(ProjectFullName).zip" DestinationFolder="%(ProvisioningDirs.FullPath)" SkipUnchangedFiles="false" Condition="$(ProvisioningDir) != ''" />
       <Unzip TargetDirectory="%(ServiceHostBins.FullPath)" ZipFileName="%(ServiceHostBins.FullPath)\$(ProjectFullName).zip" />
     </Target>
 
