@@ -3,7 +3,6 @@
     <!-- PLEASE NOTE THAT CHANGES TO THIS FILE WILL NOT TAKE AFFECT UNTIL YOU UNLOAD AND RELOAD YOUR PROJECT! -->
     <PropertyGroup>
         <ProjectFullName>$saferootprojectname$</ProjectFullName>
-        <Deploy>1</Deploy>
         <InternalizedDlls></InternalizedDlls>
     </PropertyGroup>
     

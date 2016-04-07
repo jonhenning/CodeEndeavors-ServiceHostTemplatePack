@@ -3,8 +3,6 @@
   <!-- PLEASE NOTE THAT CHANGES TO THIS FILE WILL NOT TAKE AFFECT UNTIL YOU UNLOAD AND RELOAD YOUR PROJECT! -->
   <PropertyGroup>
     <ProjectFullName>$saferootprojectname$</ProjectFullName>
-    <Deploy>0</Deploy>
-    <DeployProxy>0</DeployProxy>
     <InternalizedDlls>CodeEndeavors.ServiceHost.Common.dll</InternalizedDlls>
   </PropertyGroup>
 
@@ -59,7 +57,7 @@
     <RemoveDir Directories="$(ClientDir)" />
   </Target>
 
-  <Target Name="DeployPackage" Condition="$(Deploy) == '1'">
+  <Target Name="DeployPackage">
     <Copy SourceFiles="$(RedistDir)\$(ExternalClientName).zip" DestinationFolder="%(DeployDirs.FullPath)\_updates" Condition="$(DeployDir) != ''" />
     <Copy SourceFiles="$(RedistDir)\$(ExternalClientName).zip" DestinationFolder="%(ProvisioningDirs.FullPath)" SkipUnchangedFiles="false" Condition="$(ProvisioningDir) != ''" />
   </Target>
