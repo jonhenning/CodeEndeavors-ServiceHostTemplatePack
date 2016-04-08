@@ -57,6 +57,7 @@
 
     <Target Name="DeployPackage">
         <Copy SourceFiles="$(RedistDir)\$(ProjectFullName).zip" DestinationFolder="%(DeployDirs.FullPath)\_updates" Condition="$(DeployDir) != ''" />
+        <Copy SourceFiles="$(TargetDir)\$(ProjectFullName).dll.config;" DestinationFolder="%(DeployDirs.FullPath)\bin" SkipUnchangedFiles="false" Condition="$(DeployDir) != '' AND $(Configuration) == 'Debug' " />
         <Copy SourceFiles="$(RedistDir)\$(ProjectFullName).zip" DestinationFolder="%(ProvisioningDirs.FullPath)" SkipUnchangedFiles="false" Condition="$(ProvisioningDir) != ''" />
     </Target>
 

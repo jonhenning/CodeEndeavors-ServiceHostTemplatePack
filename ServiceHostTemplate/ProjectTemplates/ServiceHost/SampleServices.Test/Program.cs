@@ -75,7 +75,7 @@ namespace $saferootprojectname$.Test
             }
         }
 
-        private static Client.ClientCommandResult<DomainObjects.Customer> DoGetCustomer(string[] commandParts)
+        private static void DoGetCustomer(string[] commandParts)
         {
             var id = 1;
             if (commandParts.Length > 1)
@@ -83,7 +83,6 @@ namespace $saferootprojectname$.Test
 
             var cr = SalesService.CustomerGet(id);
             RecordMessage(cr.Data.ToJson(true));
-            return cr;
         }
 
         private static void RecordMessage(string Message)
