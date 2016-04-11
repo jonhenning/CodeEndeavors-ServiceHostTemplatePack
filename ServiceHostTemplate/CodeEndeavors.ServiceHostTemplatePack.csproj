@@ -99,7 +99,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="ItemTemplates\Code Endeavors\DomainEF6T4\data.t4" />
     <None Include="ItemTemplates\Code Endeavors\DomainEF6T4\EF.Reverse.CE.POCO.ttinclude" />
     <None Include="ItemTemplates\Code Endeavors\DomainEF6T4\EF.Reverse.POCO.Core.ttinclude" />
