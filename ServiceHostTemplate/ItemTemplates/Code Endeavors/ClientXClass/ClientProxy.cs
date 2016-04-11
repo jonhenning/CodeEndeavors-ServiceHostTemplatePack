@@ -68,6 +68,16 @@ namespace $defaultnamespace$
         {
             return ServiceLocator.Resolve<Client.$safeitemname$>();
         }
+
+        public static T ExecuteClient<T>(Func<ClientCommandResult<T>> codeFunc) where T : new()
+        {
+            ClientCommandResult<T> clientCommandResult = codeFunc();
+            if (clientCommandResult.Success)
+            {
+                return clientCommandResult.Data;
+            }
+            throw new Exception(clientCommandResult.ToString());
+        }
         #endregion
 
     }

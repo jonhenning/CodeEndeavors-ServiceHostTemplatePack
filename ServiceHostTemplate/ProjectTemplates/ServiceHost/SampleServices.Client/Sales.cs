@@ -76,6 +76,16 @@ namespace $saferootprojectname$.Client
         {
             return ServiceLocator.Resolve<Client.Sales>();
         }
+
+        public static T ExecuteClient<T>(Func<ClientCommandResult<T>> codeFunc) where T : new()
+        {
+            ClientCommandResult<T> clientCommandResult = codeFunc();
+            if (clientCommandResult.Success)
+            {
+                return clientCommandResult.Data;
+            }
+            throw new Exception(clientCommandResult.ToString());
+        }
         #endregion
 
 
