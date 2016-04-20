@@ -112,7 +112,9 @@
     <None Include="ItemTemplates\Code Endeavors\DataEF6T4\Mapping\EF.Reverse.POCO.Core.ttinclude" />
     <None Include="ItemTemplates\Code Endeavors\DataEF6T4\Mapping\EF.Reverse.POCO.ttinclude" />
     <None Include="key.snk" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="ItemTemplates\Code Endeavors\MappingExt\Definitions\CSharp.vstemplate">
       <SubType>Designer</SubType>
     </Content>
@@ -154,6 +156,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ProjectTemplates\ServiceHost\redist\Company.Services.Sample.ClientX.nuspec">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="ProjectTemplates\ServiceHost\SampleServices.Client\build.targets">
       <SubType>Designer</SubType>

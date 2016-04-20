@@ -31,6 +31,7 @@ namespace CodeEndeavors.ServiceHostTemplateWizards
             var destPath = _replacementsDictionary["$destinationdirectory$"];  //$destinationdirectory$
 
             copyServiceHostFiles(destPath);
+            copyNuspec(destPath);
 
         }
 
@@ -157,6 +158,14 @@ namespace CodeEndeavors.ServiceHostTemplateWizards
         {
             return true;
         }
+
+        private void copyNuspec(string destPath)
+        {
+            var redistDir = Path.Combine(destPath, "redist");
+            var sourceRedistDir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ProjectTemplates\ServiceHost\redist");
+            copyDirectory(sourceRedistDir, redistDir);
+        }
+
 
         private void copyServiceHostFiles(string destPath)
         {
