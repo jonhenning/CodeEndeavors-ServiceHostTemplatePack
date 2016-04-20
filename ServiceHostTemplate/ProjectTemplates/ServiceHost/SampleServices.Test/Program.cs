@@ -1,4 +1,5 @@
 ﻿using CodeEndeavors.Extensions;
+using CodeEndeavors.ServiceHost.Common.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace $saferootprojectname$.Test
 
         private static Client.Sales SalesService
         {
-            get { return Client.Sales.Resolve(); }
+            get { return ServiceLocator.Resolve<Client.Sales>(); }
         }
 
         static void Main(string[] args)
@@ -35,7 +36,7 @@ namespace $saferootprojectname$.Test
 
             Console.WriteLine("Initializing Service ({0})", url);
 
-            Client.Sales.Register(url, 600000);
+            ServiceLocator.Register<Client.Sales>(url, 600000);
             SalesService.SetAquireUserIdDelegate(AquireUserId);
 
             SalesService.ConfigureLogging("Debug", (string level, string message) =>

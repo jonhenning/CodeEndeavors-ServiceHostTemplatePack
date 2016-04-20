@@ -8,7 +8,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Company Name Sample Proxy</description>
         <dependencies>
-            <dependency id="CodeEndeavors.Extensions" version="2.0.7" />           
+            <dependency id="CodeEndeavors.Extensions" version="2.0.8" />           
         </dependencies>
     </metadata>
     <files>

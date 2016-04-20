@@ -16,19 +16,21 @@ namespace $defaultnamespace$
 
         public $safeitemname$()
         {
-            Helpers.HandleAssemblyResolve();
             _service = new Stubs.$safeitemname$();
         }
 
-        public $safeitemname$(string httpServiceUrl, int requestTimeout, string restfulServerExtension)
+        public $safeitemname$(string httpServiceUrl, int requestTimeout, string restfulServerExtension) : base(httpServiceUrl, requestTimeout, restfulServerExtension)
         {
-            Helpers.HandleAssemblyResolve();
             _service = new Http.$safeitemname$(httpServiceUrl, requestTimeout, restfulServerExtension);
         }
-        public $safeitemname$(string httpServiceUrl, int requestTimeout, string restfulServerExtension, string httpUser, string httpPassword, string authenticationType)
+        public $safeitemname$(string httpServiceUrl, int requestTimeout, string restfulServerExtension, string httpUser, string httpPassword, string authenticationType) : base(httpServiceUrl, requestTimeout, restfulServerExtension, httpUser, httpPassword, authenticationType)
         {
-            Helpers.HandleAssemblyResolve();
             _service = new Http.$safeitemname$(httpServiceUrl, requestTimeout, restfulServerExtension, httpUser, httpPassword, authenticationType);
+        }
+
+        public override void SetAquireUserIdDelegate(Func<string> func)
+        {
+            _service.SetAquireUserIdDelegate(func);
         }
 
         //public ClientCommandResult<DomainObjects.Customer> CustomerGet(int id)
@@ -38,47 +40,6 @@ namespace $defaultnamespace$
         //        result.ReportResult(_service.CustomerGet(id), true);
         //    });
         //}
-
-        #region Common Client Methods
-        public void SetAquireUserIdDelegate(Func<string> func)
-        {
-            _service.SetAquireUserIdDelegate(func);
-        }
-
-        public void ConfigureLogging(string logLevel, Action<string, string> onLoggingMessage)
-        {
-            Logger.LogLevel = logLevel.ToType<Logger.LoggingLevel>();
-            Logger.OnLoggingMessage += (Logger.LoggingLevel level, string message) =>
-            {
-                if (onLoggingMessage != null)
-                    onLoggingMessage(level.ToString(), message);
-            };
-        }
-
-        public static void Register(string url, int requestTimeout)
-        {
-            ServiceLocator.Register<Client.$safeitemname$>(url, requestTimeout);
-        }
-        public static void Register(string url, int requestTimeout, string httpUser, string httpPassword, string authenticationType)
-        {
-            ServiceLocator.Register<Client.$safeitemname$>(url, requestTimeout, httpUser, httpPassword, authenticationType.ToType<AuthenticationType>());
-        }
-
-        public static Client.$safeitemname$ Resolve()
-        {
-            return ServiceLocator.Resolve<Client.$safeitemname$>();
-        }
-
-        public static T ExecuteClient<T>(Func<ClientCommandResult<T>> codeFunc) where T : new()
-        {
-            ClientCommandResult<T> clientCommandResult = codeFunc();
-            if (clientCommandResult.Success)
-            {
-                return clientCommandResult.Data;
-            }
-            throw new Exception(clientCommandResult.ToString());
-        }
-        #endregion
 
     }
 }

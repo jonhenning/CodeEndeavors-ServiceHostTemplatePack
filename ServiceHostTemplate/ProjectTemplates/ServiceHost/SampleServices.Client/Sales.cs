@@ -1,4 +1,5 @@
 ﻿using CodeEndeavors.Extensions;
+using CodeEndeavors.ServiceHost.Common.Client;
 using CodeEndeavors.ServiceHost.Common.Services;
 using System;
 using System.Collections.Generic;
@@ -7,28 +8,31 @@ using System.Text;
 using System.Threading.Tasks;
 using DomainObjects = $saferootprojectname$.Shared.DomainObjects;
 using Logger = CodeEndeavors.ServiceHost.Common.Services.Logging;
+using CodeEndeavors.ServiceHost.Common.Client;
 
 namespace $saferootprojectname$.Client
 {
-    public class Sales
+    public class Sales : BaseClient
     {
         private ISalesService _service;
 
-        public Sales()
+        public Sales() : base()
         {
-            Helpers.HandleAssemblyResolve();
             _service = new Stubs.Sales();
         }
 
-        public Sales(string httpServiceUrl, int requestTimeout, string restfulServerExtension)
+        public Sales(string httpServiceUrl, int requestTimeout, string restfulServerExtension) : base(httpServiceUrl, requestTimeout, restfulServerExtension)
         {
-            Helpers.HandleAssemblyResolve();
             _service = new Http.Sales(httpServiceUrl, requestTimeout, restfulServerExtension);
         }
-        public Sales(string httpServiceUrl, int requestTimeout, string restfulServerExtension, string httpUser, string httpPassword, string authenticationType)
+        public Sales(string httpServiceUrl, int requestTimeout, string restfulServerExtension, string httpUser, string httpPassword, string authenticationType) : base(httpServiceUrl, requestTimeout, restfulServerExtension, httpUser, httpPassword, authenticationType)
         {
-            Helpers.HandleAssemblyResolve();
             _service = new Http.Sales(httpServiceUrl, requestTimeout, restfulServerExtension, httpUser, httpPassword, authenticationType);
+        }
+
+        public override void SetAquireUserIdDelegate(Func<string> func)
+        {
+            _service.SetAquireUserIdDelegate(func);
         }
 
         public ClientCommandResult<DomainObjects.Customer> CustomerGet(int id)
@@ -46,49 +50,6 @@ namespace $saferootprojectname$.Client
                 result.ReportResult(_service.CustomerSave(customer, id), true);
             });
         }
-
-        #region Common Client Methods
-        public void SetAquireUserIdDelegate(Func<string> func)
-        {
-            _service.SetAquireUserIdDelegate(func);
-        }
-
-        public void ConfigureLogging(string logLevel, Action<string, string> onLoggingMessage)
-        {
-            Logger.LogLevel = logLevel.ToType<Logger.LoggingLevel>();
-            Logger.OnLoggingMessage += (Logger.LoggingLevel level, string message) =>
-            {
-                if (onLoggingMessage != null)
-                    onLoggingMessage(level.ToString(), message);
-            };
-        }
-
-        public static void Register(string url, int requestTimeout)
-        {
-            ServiceLocator.Register<Client.Sales>(url, requestTimeout);
-        }
-        public static void Register(string url, int requestTimeout, string httpUser, string httpPassword, string authenticationType)
-        {
-            ServiceLocator.Register<Client.Sales>(url, requestTimeout, httpUser, httpPassword, authenticationType.ToType<AuthenticationType>());
-        }
-
-        public static Client.Sales Resolve()
-        {
-            return ServiceLocator.Resolve<Client.Sales>();
-        }
-
-        public static T ExecuteClient<T>(Func<ClientCommandResult<T>> codeFunc) where T : new()
-        {
-            ClientCommandResult<T> clientCommandResult = codeFunc();
-            if (clientCommandResult.Success)
-            {
-                return clientCommandResult.Data;
-            }
-            throw new Exception(clientCommandResult.ToString());
-        }
-        #endregion
-
-
 
     }
 }

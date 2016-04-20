@@ -32,9 +32,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CodeEndeavors.Extensions, Version=2.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CodeEndeavors.Extensions, Version=2.0.8.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CodeEndeavors.Extensions.2.0.7\lib\net45\CodeEndeavors.Extensions.dll</HintPath>
+      <HintPath>..\packages\CodeEndeavors.Extensions.2.0.8\lib\net45\CodeEndeavors.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeEndeavors.ServiceHost.Common, Version=2.0.24.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CodeEndeavors.ServiceHost.Common.2.0.24\lib\4.5\CodeEndeavors.ServiceHost.Common.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
