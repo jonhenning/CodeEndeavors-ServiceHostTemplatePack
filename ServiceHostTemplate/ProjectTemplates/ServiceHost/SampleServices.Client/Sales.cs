@@ -37,17 +37,17 @@ namespace $saferootprojectname$.Client
 
         public ClientCommandResult<DomainObjects.Customer> CustomerGet(int id)
         {
-            return ClientCommandResult<DomainObjects.Customer>.Execute(result =>
+            return ClientCommandResult<DomainObjects.Customer>.Execute(() =>
             {
-                result.ReportResult(_service.CustomerGet(id), true);
+                return _service.CustomerGet(id);
             });
         }
 
         public ClientCommandResult<bool> CustomerSave(DomainObjects.Customer customer, int id)
         {
-            return ClientCommandResult<bool>.Execute(result =>
+            return ClientCommandResult<bool>.Execute(() =>
             {
-                result.ReportResult(_service.CustomerSave(customer, id), true);
+                return _service.CustomerSave(customer, id);
             });
         }
 

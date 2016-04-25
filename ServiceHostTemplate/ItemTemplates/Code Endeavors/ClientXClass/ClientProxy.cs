@@ -35,9 +35,9 @@ namespace $defaultnamespace$
 
         //public ClientCommandResult<DomainObjects.Customer> CustomerGet(int id)
         //{
-        //    return ClientCommandResult<DomainObjects.Customer>.Execute(result =>
+        //    return ClientCommandResult<DomainObjects.Customer>.Execute(() =>
         //    {
-        //        result.ReportResult(_service.CustomerGet(id), true);
+        //        return _service.CustomerGet(id);
         //    });
         //}
 

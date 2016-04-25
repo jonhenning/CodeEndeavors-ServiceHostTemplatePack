@@ -155,6 +155,7 @@
     <Content Include="ProjectTemplates\ServiceHost\redist\Company.Services.Sample.ClientX.nuspec">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="ProjectTemplates\ServiceHost\SampleServices.Client\build.targets">
       <SubType>Designer</SubType>
