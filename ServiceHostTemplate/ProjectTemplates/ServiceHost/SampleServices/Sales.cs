@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+//using System.Data.Entity; //uncomment to support AsNoTracking from EF
 using DomainObjects = $saferootprojectname$.Shared.DomainObjects;
 
 namespace $saferootprojectname$

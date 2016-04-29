@@ -1,4 +1,5 @@
 ﻿using CodeEndeavors.Extensions;
+using CodeEndeavors.ServiceHost.Common.Client;
 using CodeEndeavors.ServiceHost.Common.Services;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using Logger = CodeEndeavors.ServiceHost.Common.Services.Logging;
 
 namespace $defaultnamespace$
 {
-    public class $safeitemname$
+    public class $safeitemname$ : BaseClient
     {
         private I$safeitemname$Service _service;
 

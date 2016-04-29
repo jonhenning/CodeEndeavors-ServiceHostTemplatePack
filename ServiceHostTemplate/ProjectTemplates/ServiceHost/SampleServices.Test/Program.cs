@@ -41,7 +41,7 @@ namespace $saferootprojectname$.Test
 
             SalesService.ConfigureLogging("Debug", (string level, string message) =>
                 {
-                    RecordMessage(string.Format("{0}:{1}", level, message));
+                    recordMessage(string.Format("{0}:{1}", level, message));
                 });
 
             string command = "";
@@ -64,14 +64,14 @@ namespace $saferootprojectname$.Test
                             }
                         default:
                             {
-                                RecordMessage("Unknown Command");
+                                recordMessage("Unknown Command");
                                 break;
                             }
                     }
                 }
                 catch (Exception ex)
                 {
-                    RecordMessage(ex.Message);
+                    recordMessage(ex.Message);
                 }
             }
         }
@@ -83,12 +83,16 @@ namespace $saferootprojectname$.Test
                 id = int.Parse(commandParts[1]);
 
             var cr = SalesService.CustomerGet(id);
-            RecordMessage(cr.Data.ToJson(true));
+            recordMessage(cr.Data.ToJson(true));
         }
 
-        private static void RecordMessage(string Message)
+        private static void recordMessage(string message)
         {
-            Console.WriteLine(Message);
+            Console.WriteLine(message);
+        }
+        private static void recordMessage(string message, params object[] args)
+        {
+            Console.WriteLine(message, args);
         }
 
         public static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
