@@ -75,6 +75,8 @@
         bool AutomaticMigrationsEnabled = true;
         bool AutomaticMigrationDataLossAllowed = true;
 
+		bool ConvertDateTimeToDateTimeOffset = true;	//JH-DateTime
+
         string CodeGeneratedAttribute = "[GeneratedCodeAttribute(\"EF.Reverse.POCO.Generator\", \"2.13.1.0\")]";
         // Settings to allow selective code generation
         [Flags]
@@ -494,7 +496,7 @@
 
 
                     var reader = new SqlServerSchemaReader(conn, factory, IncludeQueryTraceOn9481Flag) { Outer = this };
-                    var tables = reader.ReadSchema(TableFilterExclude, ColumnFilterExclude, UseCamelCase, PrependSchemaName, IncludeComments, IncludeExtendedPropertyComments, TableRename, SchemaName, UpdateColumn, TableSchemaInclude);
+                    var tables = reader.ReadSchema(TableFilterExclude, ColumnFilterExclude, UseCamelCase, PrependSchemaName, IncludeComments, IncludeExtendedPropertyComments, TableRename, SchemaName, UpdateColumn, TableSchemaInclude, ConvertDateTimeToDateTimeOffset);
                     tables.SetPrimaryKeys();
 
                     // Remove unrequired tables/views
@@ -725,7 +727,7 @@
                 EntityFk = new List<string>();
             }
 
-            private void SetupEntity(bool includeComments, ExtendedPropertyCommentsStyle includeExtendedPropertyComments)
+            private void SetupEntity(bool includeComments, ExtendedPropertyCommentsStyle includeExtendedPropertyComments, bool convertDateTimeToDateTimeOffset)
             {
                 string comments;
                 if (includeComments)
@@ -752,10 +754,29 @@
                         comments += ". " + ExtendedProperty;
                 }
 
-                Entity = string.Format("public {0}{1} {2} {3}{4}", PropertyType, CheckNullable(this), PropertyNameHumanCase, "{ get; set; }", comments);
+				//JH-DateTime
+				if (convertDateTimeToDateTimeOffset && PropertyType == "DateTime")
+				{
+					Entity = string.Format("public {0}{1} _{2} " + 
+							"\r\n		{{ \r\n" + 
+							(
+								CheckNullable(this) == "?" ? 
+								"			get {{ return {2}.HasValue ? {2}.Value.DateTime : (DateTime?)null; }} \r\n" +
+								"			set {{ {2} = value.HasValue ? new DateTimeOffset(DateTime.SpecifyKind(value.Value, DateTimeKind.Utc)) : (DateTimeOffset?)null; }} \r\n"
+								:
+								"			get {{ return {2}.DateTime; }} \r\n" +
+								"			set {{ {2} = new DateTimeOffset(DateTime.SpecifyKind(value, DateTimeKind.Utc)); }} \r\n"
+							) +
+							"		}} {3}", PropertyType, CheckNullable(this), PropertyNameHumanCase, comments) + "\r\n" +
+							string.Format("		public {0}Offset{1} {2} {3}{4}", PropertyType, CheckNullable(this), PropertyNameHumanCase, "{ get; set; }", comments);
+				}
+				else 
+				{
+					Entity = string.Format("public {0}{1} {2} {3}{4}", PropertyType, CheckNullable(this), PropertyNameHumanCase, "{ get; set; }", comments);
+				}
             }
 
-            private void SetupConfig()
+            private void SetupConfig(bool convertDateTimeToDateTimeOffset)
             {
                 bool hasDatabaseGeneratedOption = false;
                 string propertyType = PropertyType.ToLower();
@@ -781,20 +802,36 @@
                     if(IsPrimaryKey && !IsIdentity && !IsStoreGenerated)
                         databaseGeneratedOption = ".HasDatabaseGeneratedOption(DatabaseGeneratedOption.None)";
                 }
-                Config = string.Format("Property(x => x.{0}).HasColumnName(\"{1}\"){2}{3}{4}{5}{6}{7}{8};", PropertyNameHumanCase, Name,
-                                            (IsNullable) ? ".IsOptional()" : ".IsRequired()",
-                                            (IsFixedLength || IsRowVersion) ? ".IsFixedLength()" : "",
-                                            (IsUnicode) ? string.Empty : ".IsUnicode(false)",
-                                            (MaxLength > 0) ? ".HasMaxLength(" + MaxLength + ")" : string.Empty,
-                                            (Scale > 0) ? ".HasPrecision(" + Precision + "," + Scale + ")" : string.Empty,
-                                            (IsRowVersion) ? ".IsRowVersion()" : string.Empty,
-                                            databaseGeneratedOption);
+				//JH-DateTime
+				if (convertDateTimeToDateTimeOffset && (propertyType == "datetime" || propertyType == "smalldatetime"))
+				{
+					Config = string.Format("Ignore(x => x.{0});\r\n			Property(x => x._{0}).HasColumnName(\"{1}\"){2}{3}{4}{5}{6}{7}{8}; //its this!", PropertyNameHumanCase, Name,
+											(IsNullable) ? ".IsOptional()" : ".IsRequired()",
+											(IsFixedLength || IsRowVersion) ? ".IsFixedLength()" : "",
+											(IsUnicode) ? string.Empty : ".IsUnicode(false)",
+											(MaxLength > 0) ? ".HasMaxLength(" + MaxLength + ")" : string.Empty,
+											(Scale > 0) ? ".HasPrecision(" + Precision + "," + Scale + ")" : string.Empty,
+											(IsRowVersion) ? ".IsRowVersion()" : string.Empty,
+											databaseGeneratedOption);
+				}
+				else 
+				{
+					Config = string.Format("Property(x => x.{0}).HasColumnName(\"{1}\"){2}{3}{4}{5}{6}{7}{8};", PropertyNameHumanCase, Name,
+											(IsNullable) ? ".IsOptional()" : ".IsRequired()",
+											(IsFixedLength || IsRowVersion) ? ".IsFixedLength()" : "",
+											(IsUnicode) ? string.Empty : ".IsUnicode(false)",
+											(MaxLength > 0) ? ".HasMaxLength(" + MaxLength + ")" : string.Empty,
+											(Scale > 0) ? ".HasPrecision(" + Precision + "," + Scale + ")" : string.Empty,
+											(IsRowVersion) ? ".IsRowVersion()" : string.Empty,
+											databaseGeneratedOption);
+				
+				}
             }
 
-            public void SetupEntityAndConfig(bool includeComments, ExtendedPropertyCommentsStyle includeExtendedPropertyComments)
+            public void SetupEntityAndConfig(bool includeComments, ExtendedPropertyCommentsStyle includeExtendedPropertyComments, bool convertDateTimeToDateTimeOffset)
             {
-                SetupEntity(includeComments, includeExtendedPropertyComments);
-                SetupConfig();
+                SetupEntity(includeComments, includeExtendedPropertyComments, convertDateTimeToDateTimeOffset);
+                SetupConfig(convertDateTimeToDateTimeOffset);
             }
 
             public void CleanUpDefault()
@@ -1127,7 +1164,7 @@
             }
 
             public GeneratedTextTransformation Outer;
-            public abstract Tables ReadSchema(Regex tableFilterExclude, Regex columnFilterExclude, bool useCamelCase, bool prependSchemaName, bool includeComments, ExtendedPropertyCommentsStyle includeExtendedPropertyComments, Func<string, string, string> tableRename, string schemaNameFilter, Func<Column, Table, Column> updateColumn, string tableSchemaInclude);
+            public abstract Tables ReadSchema(Regex tableFilterExclude, Regex columnFilterExclude, bool useCamelCase, bool prependSchemaName, bool includeComments, ExtendedPropertyCommentsStyle includeExtendedPropertyComments, Func<string, string, string> tableRename, string schemaNameFilter, Func<Column, Table, Column> updateColumn, string tableSchemaInclude, bool convertDateTimeToDateTimeOffset);
             public abstract List<StoredProcedure> ReadStoredProcs(Regex storedProcedureFilterExclude, bool useCamelCase, bool prependSchemaName , Func<string, string, string> StoredProcedureRename, string schemaNameFilter, string procSchemaInclude);
             public abstract List<ForeignKey> ReadForeignKeys(Func<string, string, string> tableRename);
             public abstract void ProcessForeignKeys(List<ForeignKey> fkList, Tables tables, bool useCamelCase, bool prependSchemaName, string collectionType, bool checkForFkNameClashes, bool includeComments);
@@ -1424,7 +1461,7 @@ OPTION (QUERYTRACEON 9481)";
                 return string.Empty;
             }
 
-            public override Tables ReadSchema(Regex tableFilterExclude, Regex columnFilterExclude, bool useCamelCase, bool prependSchemaName, bool includeComments, ExtendedPropertyCommentsStyle includeExtendedPropertyComments, Func<string, string, string> tableRename, string schemaNameFilter, Func<Column, Table, Column> updateColumn, string tableSchemaInclude)
+            public override Tables ReadSchema(Regex tableFilterExclude, Regex columnFilterExclude, bool useCamelCase, bool prependSchemaName, bool includeComments, ExtendedPropertyCommentsStyle includeExtendedPropertyComments, Func<string, string, string> tableRename, string schemaNameFilter, Func<Column, Table, Column> updateColumn, string tableSchemaInclude, bool convertDateTimeToDateTimeOffset)
             {
                 var result = new Tables();
                 if(Cmd == null)
@@ -1507,7 +1544,7 @@ OPTION (QUERYTRACEON 9481)";
                 
                 foreach(Table tbl in result)
                 {
-                    tbl.Columns.ForEach(x => x.SetupEntityAndConfig(includeComments, includeExtendedPropertyComments));
+                    tbl.Columns.ForEach(x => x.SetupEntityAndConfig(includeComments, includeExtendedPropertyComments, convertDateTimeToDateTimeOffset));
                 }
 
                 return result;
