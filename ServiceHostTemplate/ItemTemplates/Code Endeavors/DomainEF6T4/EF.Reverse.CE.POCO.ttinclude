@@ -210,7 +210,7 @@
         int count = sp.Parameters.Count;
         foreach (var p in sp.Parameters.OrderBy(x => x.Ordinal))
         {
-            sb.AppendFormat("{0}{1}{2}", 
+            sb.AppendFormat("{0}={0}{1}{2}", 
                 p.Name, 
                 p.Mode == StoredProcedureParameterMode.In ? string.Empty : " OUTPUT", 
                 (n++ < count) ? ", " : string.Empty);
