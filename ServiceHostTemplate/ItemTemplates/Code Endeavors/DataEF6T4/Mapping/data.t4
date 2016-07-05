@@ -17,18 +17,3 @@
 
 <#@ include file="EF.Reverse.CE.POCO.ttinclude" #>
 
-
-<#
-    AdditionalNamespaces = new[] { "System", "System.Collections.Generic" };
-
-    // Read schema
-    var factory = GetDbProviderFactory();
-    var tables = LoadTables(factory);
-    var storedProcs = LoadStoredProcs(factory);
-    
-    // Generate output
-    if (tables.Count > 0 || storedProcs.Count > 0)
-    {
-#>
-<#@ include file="EF.Reverse.POCO.ttinclude" #>
-<# } #>
