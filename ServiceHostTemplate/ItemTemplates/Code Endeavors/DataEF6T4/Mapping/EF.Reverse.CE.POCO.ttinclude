@@ -362,7 +362,7 @@
         {
             sb.AppendFormat("{0}{1}{2}",
                 p.Name,
-                p.Mode == StoredProcedureParameterMode.In ? string.Empty : "", //" OUTPUT",	//JH
+                p.Mode == StoredProcedureParameterMode.In ? string.Empty : " OUTPUT",	
                 (n++ < count) ? ", " : string.Empty);
         }
         return sb.ToString();
