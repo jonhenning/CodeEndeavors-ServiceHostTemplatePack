@@ -2125,7 +2125,9 @@ SELECT  SERVERPROPERTY('Edition') AS Edition,
 
                     for(var count = 0; count < ds.Tables.Count; count++)
                     {
-                        proc.ReturnModels.Add(ds.Tables[count].Columns.Cast<DataColumn>().ToList());
+						var columns = ds.Tables[count].Columns.Cast<DataColumn>().ToList();
+						columns.ForEach(c => c.ColumnName = c.ColumnName.Replace(" ", "_")); //JH
+                        proc.ReturnModels.Add(columns);
                     }
                 }
                 catch (Exception)
