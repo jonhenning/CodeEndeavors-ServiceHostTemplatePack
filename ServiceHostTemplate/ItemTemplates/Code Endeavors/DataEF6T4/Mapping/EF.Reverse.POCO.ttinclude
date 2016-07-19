@@ -103,6 +103,10 @@ foreach (StoredProcedure sp in storedProcs.Where(s => !s.IsTVF))
         <#=WriteStoredProcReturnType(sp) #> <#=WriteStoredProcFunctionName(sp)#>(<#=WriteStoredProcFunctionParams(sp, true) #>);
 <#  } else { #>
         <#=WriteStoredProcReturnType(sp) #> <#=WriteStoredProcFunctionName(sp)#>(<#=WriteStoredProcFunctionParams(sp, false) #>);
+		<#if (sp.ReturnModels.Count > 0 && sp.ReturnModels.First().Count > 0) //JH
+		{#>
+		<#=WriteStoredProcReturnType(sp) #> <#=WriteStoredProcFunctionName(sp)#>(<#=WriteStoredProcFunctionParams(sp, true)#>);	
+		<#}#>
 <#  }
     if (IsSupportedFrameworkVersion("4.5"))
     {
@@ -309,7 +313,7 @@ foreach (StoredProcedure sp in storedProcs.Where(s => !s.IsTVF))
     int returnModelsCount = sp.ReturnModels.Count;
     if (returnModelsCount > 0)
     {
-        if (returnModelsCount == 1)
+        if (returnModelsCount > 0)	//JH
         { #>
         public <#=WriteStoredProcReturnType(sp) #> <#=WriteStoredProcFunctionName(sp) #>(<#=WriteStoredProcFunctionParams(sp, false) #>)
         {
@@ -319,7 +323,7 @@ foreach (StoredProcedure sp in storedProcs.Where(s => !s.IsTVF))
 
         public <#=WriteStoredProcReturnType(sp) #> <#=WriteStoredProcFunctionName(sp) #>(<#=WriteStoredProcFunctionParams(sp, true) #>)
 <#      } else { #>
-        public <#=WriteStoredProcReturnType(sp) #> <#=WriteStoredProcFunctionName(sp) #>(<#=WriteStoredProcFunctionParams(sp, false) #>)
+        public <#=WriteStoredProcReturnType(sp) #> <#=WriteStoredProcFunctionName(sp) #>(<#=WriteStoredProcFunctionParams(sp, true) #>)	//JH
 <#      } #>
         {
 <#= WriteStoredProcFunctionDeclareSqlParameter(sp, true) #><#
@@ -332,8 +336,8 @@ foreach (StoredProcedure sp in storedProcs.Where(s => !s.IsTVF))
 <# }
         else
         {
-            var exec = string.Format("[{0}].[{1}]", sp.Schema, sp.Name); #>
-<#= WriteStoredProcFunctionSetSqlParameters(sp, false) #>
+            var exec = string.Format("[{0}].[{1}]", sp.Schema, sp.Name); #>	
+<#= WriteStoredProcFunctionSetSqlParameters(sp, false) #>	<# /* JH */ #>
             var procResultData = new <#= spReturnClassName #>();
             var cmd = Database.Connection.CreateCommand();
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -342,12 +346,15 @@ foreach (StoredProcedure sp in storedProcs.Where(s => !s.IsTVF))
 { #>
             cmd.Parameters.Add(<#= WriteStoredProcSqlParameterName(p) #>);
 <# } #>
+			cmd.Parameters.Add(procResultParam);	<# /* JH */ #>
 
             try
             {
                 Database.Connection.Open();
                 var reader = cmd.ExecuteReader();
                 var objectContext = ((System.Data.Entity.Infrastructure.IObjectContextAdapter) this).ObjectContext;
+
+				procResult = (int) procResultParam.Value;
 
 <# int n = 0;
             var returnModelCount = sp.ReturnModels.Count;

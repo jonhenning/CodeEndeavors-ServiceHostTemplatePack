@@ -398,8 +398,13 @@
                         p.NameHumanCase, Environment.NewLine);
                 }
         }
-        if(includeProcResult && sp.ReturnModels.Count < 2)
-            sb.AppendLine("            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = \"@procResult\", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };");
+        if(includeProcResult)
+		{
+			if (sp.ReturnModels.Count < 2) //JH
+				sb.AppendLine("            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = \"@procResult\", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };");
+			else 
+				sb.AppendLine("            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = \"@procResult\", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.ReturnValue };");
+		}
         return sb.ToString();
     };
 
