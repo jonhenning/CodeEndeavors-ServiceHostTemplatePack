@@ -93,6 +93,7 @@
         bool AutomaticMigrationDataLossAllowed = true;
 
 		bool ConvertDateTimeToDateTimeOffset = true;	//JH-DateTime
+		bool SetColumnDefaultValue = false;	//JH
 
         List<EnumDefinition> EnumsDefinitions = new List<EnumDefinition>();
 
@@ -534,7 +535,7 @@
                         PrependSchemaName = false;
 
                     var reader = new SqlServerSchemaReader(conn, factory, IncludeQueryTraceOn9481Flag) { Outer = this };
-                    var tables = reader.ReadSchema(SchemaFilterExclude, SchemaFilterInclude, TableFilterExclude, TableFilterInclude, ColumnFilterExclude, TableFilter, UseCamelCase, PrependSchemaName, IncludeComments, IncludeViews, IncludeExtendedPropertyComments, TableRename, UpdateColumn, TableSchemaInclude, ConvertDateTimeToDateTimeOffset);	//JH
+                    var tables = reader.ReadSchema(SchemaFilterExclude, SchemaFilterInclude, TableFilterExclude, TableFilterInclude, ColumnFilterExclude, TableFilter, UseCamelCase, PrependSchemaName, IncludeComments, IncludeViews, IncludeExtendedPropertyComments, TableRename, UpdateColumn, TableSchemaInclude, ConvertDateTimeToDateTimeOffset, SetColumnDefaultValue);	//JH
                     tables.SetPrimaryKeys();
 
                     // Must be done in this order
@@ -1275,7 +1276,7 @@
             }
 
             public GeneratedTextTransformation Outer;
-            public abstract Tables ReadSchema(Regex schemaFilterExclude, Regex schemaFilterInclude, Regex tableFilterExclude, Regex tableFilterInclude, Regex columnFilterExclude, Func<Table, bool> tableFilter, bool useCamelCase, bool prependSchemaName, CommentsStyle includeComments, bool includeViews, CommentsStyle includeExtendedPropertyComments, Func<string, string, string> tableRename, Func<Column, Table, Column> updateColumn, string tableSchemaInclude, bool convertDateTimeToDateTimeOffset); //JH
+            public abstract Tables ReadSchema(Regex schemaFilterExclude, Regex schemaFilterInclude, Regex tableFilterExclude, Regex tableFilterInclude, Regex columnFilterExclude, Func<Table, bool> tableFilter, bool useCamelCase, bool prependSchemaName, CommentsStyle includeComments, bool includeViews, CommentsStyle includeExtendedPropertyComments, Func<string, string, string> tableRename, Func<Column, Table, Column> updateColumn, string tableSchemaInclude, bool convertDateTimeToDateTimeOffset, bool setColumnDefaultValue); //JH
             public abstract List<StoredProcedure> ReadStoredProcs(Regex SchemaFilterExclude, Regex storedProcedureFilterExclude, bool useCamelCase, bool prependSchemaName , Func<string, string, string> StoredProcedureRename, bool includeTableValuedFunctions, string procSchemaInclude); //JH
             public abstract List<ForeignKey> ReadForeignKeys(Func<string, string, string> tableRename, Func<ForeignKey, ForeignKey> foreignKeyFilter);
             public abstract void ProcessForeignKeys(List<ForeignKey> fkList, Tables tables, bool useCamelCase, bool prependSchemaName, string collectionType, bool checkForFkNameClashes, CommentsStyle includeComments, Func<string, string, short, string> ForeignKeyName);
@@ -1700,7 +1701,7 @@ SELECT  SERVERPROPERTY('Edition') AS Edition,
                 return SqlDatabaseEngineEdition == "Azure";
             }
 
-            public override Tables ReadSchema(Regex schemaFilterExclude, Regex schemaFilterInclude, Regex tableFilterExclude, Regex tableFilterInclude, Regex columnFilterExclude, Func<Table, bool> tableFilter, bool useCamelCase, bool prependSchemaName, CommentsStyle includeComments, bool includeViews, CommentsStyle includeExtendedPropertyComments, Func<string, string, string> tableRename, Func<Column, Table, Column> updateColumn, string tableSchemaInclude, bool convertDateTimeToDateTimeOffset) //JH
+            public override Tables ReadSchema(Regex schemaFilterExclude, Regex schemaFilterInclude, Regex tableFilterExclude, Regex tableFilterInclude, Regex columnFilterExclude, Func<Table, bool> tableFilter, bool useCamelCase, bool prependSchemaName, CommentsStyle includeComments, bool includeViews, CommentsStyle includeExtendedPropertyComments, Func<string, string, string> tableRename, Func<Column, Table, Column> updateColumn, string tableSchemaInclude, bool convertDateTimeToDateTimeOffset, bool setColumnDefaultValue) //JH
             {
                 var result = new Tables();
                 if(Cmd == null)
@@ -1778,7 +1779,11 @@ SELECT  SERVERPROPERTY('Edition') AS Edition,
 
                         var col = CreateColumn(rdr, rxClean, table, useCamelCase, columnFilterExclude, updateColumn);
                         if(col != null)
+						{
                             table.Columns.Add(col);
+							if (setColumnDefaultValue == false)	//JH
+								col.Default = "";
+						}
                     }
                 }
 
@@ -2125,9 +2130,7 @@ SELECT  SERVERPROPERTY('Edition') AS Edition,
 
                     for(var count = 0; count < ds.Tables.Count; count++)
                     {
-						var columns = ds.Tables[count].Columns.Cast<DataColumn>().ToList();
-						columns.ForEach(c => c.ColumnName = c.ColumnName.Replace(" ", "_")); //JH
-                        proc.ReturnModels.Add(columns);
+                        proc.ReturnModels.Add(ds.Tables[count].Columns.Cast<DataColumn>().ToList());
                     }
                 }
                 catch (Exception)
