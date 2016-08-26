@@ -28,7 +28,6 @@
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="build.targets">build.targets</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Sales.cs">Sales.cs</ProjectItem>
-      <ProjectItem ReplaceParameters="true" TargetFileName="ClientCommandResult.cs">ClientCommandResult.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="ServiceInterfaces.cs">ServiceInterfaces.cs</ProjectItem>
     </Project>
   </TemplateContent>
